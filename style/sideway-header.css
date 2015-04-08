@@ -1,0 +1,142 @@
+
+/* Modified Moodle CSS by Mary Evans based on
+   CSS-Tricks Example
+   by Chris Coyier
+   https://css-tricks.com/sideways-headers/
+   ----------------------------------------*/
+
+.jsenabled .block {
+    position: relative;
+    border-color: #369;
+    border-style: solid;
+    border-width: 1px 1px 1px 34px;
+}
+.jsenabled .block .header h2 {
+    font: bold 12px Sans-Serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    line-height: 24px;
+    /* Abs positioning makes it not take up vert space */
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    /* Border is the new background */
+    background: none;
+
+    /* Rotate from top left corner (not default) */
+    transform-origin: 0 0;
+    transform: rotate(90deg);
+}
+
+.jsenabled .block.hidden,
+.jsenabled .block.block_adminblock {
+    display: block;
+    position: relative;
+    border-left: 0 none;
+    min-height: 24px;
+    background-color: #369;
+    padding-left: 0;
+}
+.jsenabled .block.hidden.block_with_controls .block-control-actions.commands.icon .toggle-display > i.fa,
+.jsenabled .block.hidden.block_with_controls .block-control-actions.commands.icon move.menu-action > i.fa {
+    color: #fff;
+}
+
+.jsenabled .block.hidden .header h2,
+.jsenabled .block.block_adminblock .header h2 {
+    padding: 5px 10px;
+    margin: 0 0 10px 0;
+    line-height: 24px;
+    font: bold 12px Sans-Serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    /* Abs positioning makes it not take up vert space */
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Border is the new background */
+    background: none;
+
+    /* Rotate from top left corner (not default) */
+    transform-origin: none;
+    transform: rotate(0);
+}
+
+.jsenabled .block.block_adminblock {
+    padding: 30px 10px 0;
+}
+
+.jsenabled .block_adminblock .content .singleselect {
+    width: 100%;
+    max-width: 200px;
+    margin: 0;
+    margin-left: 1px;
+    padding: 0;
+    display: block;
+}
+/* Block min-height
+-------------------------*/
+
+.jsenabled .block_site_main_menu,
+.jsenabled .block_messages {
+    min-height: 100px;
+}
+.jsenabled .block_blog_recent {
+    min-height: 120px;
+}
+.jsenabled .block_private_files {
+    min-height: 150px;
+}
+.jsenabled .block_adminblock,
+.jsenabled .block_mentees,
+.jsenabled .block_badges,
+.jsenabled .block_blog_menu,
+.jsenabled .block_blog_tags,
+.jsenabled .block_book_toc,
+.jsenabled .block_calendar_upcoming,
+.jsenabled .block_comments,
+.jsenabled .block_community,
+.jsenabled .block_course_badges,
+.jsenabled .block_course_list,
+.jsenabled .block_course_overview,
+.jsenabled .block_feedback,
+.jsenabled .block_flickr,
+.jsenabled .block_heritage,
+.jsenabled .block_html,
+.jsenabled .block_login,
+.jsenabled .block_myprofile,
+.jsenabled .block_navigation,
+.jsenabled .block_news_items,
+.jsenabled .block_people,
+.jsenabled .block_rss_client,
+.jsenabled .block_rss_plus,
+.jsenabled .block_settings,
+.jsenabled .block_tags,
+.jsenabled .block_youtube,
+.jsenabled .block_lrc {
+    min-height: 160px;
+}
+
+.jsenabled .block_activity_modules,
+.jsenabled .block_activity_results,
+.jsenabled .block_admin_bookmarks,
+.jsenabled .block_calendar_month,
+.jsenabled .block_glossary_random,
+.jsenabled .block_online_users,
+.jsenabled .block_participants,
+.jsenabled .block_quiz_navblock,
+.jsenabled .block_quiz_results,
+.jsenabled .block_recent_activity,
+.jsenabled .block_search_forums,
+.jsenabled .block_section_links,
+.jsenabled .block_twitter_search {
+    min-height: 165px;
+}
+
+.jsenabled .block_selfcompletion,
+.jsenabled .block_completionstatus {
+    min-height: 175px;
+}

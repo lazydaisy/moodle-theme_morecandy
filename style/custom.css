@@ -1,0 +1,23 @@
+/* Custom CSS
+-------------------------*/
+div.logo {
+    background-image: url([[setting:logo]]);
+    background-position: center;
+    background-repeat: no-repeat;
+    display: block;
+    float: left;
+    height: 200px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.dir-rtl div.logo {
+
+    display: block;
+    float: right;
+}
+
+/* Custom CSS Settings
+-------------------------*/
+[[setting:customcss]]

@@ -1,0 +1,64 @@
+.dir-rtl .block .content .userpicture {
+    margin-left: 6px;
+    margin-right: 0;
+}
+
+.dir-rtl .fa {
+    margin-right: 0;
+    margin-left: 0.3em;
+}
+
+/* Class name via Modernizr */
+.dir-rtl.jsenabled .block {
+    border-width: 1px 34px 1px 1px;
+}
+.dir-rtl.jsenabled .block .header h2 {
+    /* Abs positioning makes it not take up vert space */
+    position: absolute;
+    top: 0;
+    left: auto;
+    right: 0;
+    /* Rotate from top right corner (not default) */
+    transform-origin: 100% 0;
+    transform: rotate(-90deg);
+}
+
+.dir-rtl.jsenabled .block.hidden,
+.dir-rtl.jsenabled .block.block_adminblock {
+    border-right: 0 none;
+    padding-right: 0;
+}
+
+.dir-rtl.jsenabled .block.hidden .header h2,
+.dir-rtl.jsenabled .block.block_adminblock .header h2 {
+
+    /* Abs positioning makes it not take up vert space */
+    position: absolute;
+    top: 0;
+    left: auto;
+    right: 0;
+    /* Rotate from top right corner (not default) */
+    transform-origin: 100% 0;
+    transform: rotate(0);
+}
+}
+.dir-rtl.jsenabled .block_adminblock .content .singleselect {
+    margin-left: 0;
+    margin-right: 1px;
+}
+
+.dir-rtl.jsenabled .block_adminblock .content .singleselect {
+    margin-right: 0;
+    margin-left: 1px;
+}
+.dir-rtl.jsenabled .block_adminblock .content .singleselect {
+    margin-left: 0;
+    margin-right: 1px;
+}
+.dir-rtl div.logo {
+    background-image: url([[setting:logo]]);
+    background-position: no-repeat;
+    background-position: 100% 0;
+    display: block;
+    float: right;
+}

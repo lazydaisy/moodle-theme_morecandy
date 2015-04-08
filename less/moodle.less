@@ -1,0 +1,416 @@
+/**
+ * Import all the rules from the parent.
+ */
+@import "../../bootstrapbase/less/moodle.less";
+
+// Set the secondary background.
+@tableBackgroundAccent: darken(@wellBackground, 5%);
+@tableBackgroundHover: darken(@wellBackground, 10%);
+@tableBorder: @wellBorder;
+@navbarBackground: @wellBackground;
+@navbarLinkColor: @white;
+@navbarLinkColorHover: @sidewayHeaderColorHover;
+@formActionsBackground: @wellBackground;
+@paginationActiveBackground: @wellBackground;
+@hrBorder: darken(@wellBackground, 5%);
+@bodyColor: #036;
+@sidewayHeaderColor: #369;
+@sidewayHeaderColorHover: lighten(@sidewayHeaderColor, 25%);
+
+body {
+    color: @bodyColor;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 13px;
+    line-height: 1;
+    &.pagelayout-mydashboard {
+        &.content-only {
+            background-image:  url([[pix:theme|bgbtm]]);
+            background-position: 0 0;
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-color: #fff;
+        }
+        #region-main {
+            min-height: 300px;
+        }
+    }
+}
+.moodle-actionmenu {
+    &.show[data-enhanced] {
+        .menu {
+            a {
+                padding: 2px 1em;
+            }
+        }
+    }
+}
+#page-site-index {
+    .navbar-form {
+        input {
+            &.loginform {
+                margin-left: 5px;
+            }
+        }
+    }
+}
+.navbar-inner {
+    background: none;
+    background-color: @sidewayHeaderColor;
+    box-shadow: none;
+    text-shadow: none;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Trebuchet MS', sans-serif;
+    line-height: 1;
+    font-size: 14px;
+}
+h1 {font-size: 150%;}
+h2 {font-size: 140%;}
+h3 {font-size: 130%;}
+h4 {font-size: 120%;}
+h5 {font-size: 110%;}
+h6 {font-size: 100%;}
+
+.coursebox {
+    .content {
+        .summary,
+        .coursecat {
+            width: 100%;
+            float: left;
+        }
+    }
+    > .info {
+        > .coursename {
+            width: auto;
+        }
+    }
+}
+.coursebox {
+    .content {
+        .teachers,
+        .courseimage,
+        .coursefile {
+            width: 100%;
+        }
+    }
+}
+#page-course-index-category {
+    .generalbox.info {
+        margin: 1em 0;
+        padding: 0 5px;
+    }
+}
+.pagelayout-redirect {
+    text-align: center;
+    margin: 0 25%;
+    background-image:  url([[pix:theme|bgbtm]]);
+    background-position: 0 0;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-color: #fff;
+    .fa {
+        margin: 2em 0 0;
+        padding: 0;
+    }
+}
+#page-admin-purgecaches {
+    #notice {
+        width: 100%;
+        text-align: justify;
+    }
+}
+.coursebox {
+    > .info {
+        > .coursename {
+            a {
+                background-image: url([[pix:theme|course]]);
+                background-position: left top;
+                float: left;
+            }
+        }
+    }
+}
+#page-navbar {
+    .breadcrumb-button {
+        position: fixed;
+        right: 25px;
+        top: 75px;
+    }
+}
+
+.dir-rtl {
+    .coursebox {
+        > .info {
+            > .coursename {
+                a {
+                    background-position: right top;
+                    float: right;
+                }
+            }
+        }
+    }
+    #page-navbar {
+        .breadcrumb-button {
+            position: fixed;
+            right: auto;
+            left: 25px;
+            top: 75px;
+        }
+    }
+}
+
+/* Font special case
+-------------------------*/
+.fa:before {
+    margin-right: 3px;
+}
+
+/* User avatars
+-------------------------*/
+.usermenu {
+    .avatars {
+        position: relative;
+        top: -2px;
+        img {
+            display: block;
+            border-color: @sidewayHeaderColorHover;
+            border-style: solid;
+            border-width: 1px;
+            border-radius: 50% 50% 6%;
+        }
+    }
+    .avatar {
+        display: block;
+        border-color: @sidewayHeaderColorHover;
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 50% 50% 6%;
+    }
+}
+.forumpost {
+    .picture {
+        img.userpicture {
+            border-radius: 50% 50% 6%;
+            border-width: 1px;
+            border-style: solid;
+            border-color: @sidewayHeaderColor;
+            margin-left: 3px;
+            margin-right: 10px;
+        }
+    }
+}
+.dir-rtl {
+    .usermenu {
+        .avatars {
+            img {
+                border-radius: 50% 50% 50% 5%;
+            }
+        }
+        .avatar {
+            border-radius: 50% 50% 50% 5%;
+        }
+    }
+    .forumpost {
+        .picture {
+            img.userpicture {
+                border-radius: 50% 50% 50% 5%;
+                margin-left: 10px;
+                margin-right: 3px;
+            }
+        }
+    }
+}
+
+// Navbar
+.navbar {
+    .nav > li > a,
+    .brand {
+        color: @navbarLinkColor;
+        text-shadow: none;
+        &:hover {
+            color: @sidewayHeaderColorHover;
+        }
+    }
+    .nav > li > a {
+        &:hover,
+        &:focus {
+            background-color: @navbarLinkBackgroundHover; // "transparent" is default to differentiate :hover/:focus from .active
+            color: @navbarLinkColorHover;
+            text-decoration: none;
+        }
+    }
+    .nav li.dropdown > {
+        .dropdown-toggle {
+            .caret {
+                border-bottom-color: @navbarLinkColor;
+                border-top-color: @navbarLinkColor;
+            }
+        }
+    }
+}
+.usermenu {
+    .login > a:link {
+        color: @sidewayHeaderColor;
+        border-bottom: 1px dotted @sidewayHeaderColorHover;
+    }
+    .login {
+        color: @sidewayHeaderColorHover;
+        a:hover,
+        a:focus {
+            color: @navbarLinkColorHover;
+        }
+    }
+    .moodle-actionmenu {
+        a.icon.menu-action {
+            color: @navbarLinkColor;
+            &:hover,
+            &:focus {
+                color: @sidewayHeaderColorHover;
+            }
+        }
+        .toggle-display {
+            background-color: @navbarLinkBackgroundHover;
+            color: @navbarLinkColorHover;
+            .userbutton {
+                .usertext {
+                    color: @navbarLinkColor;
+                    &:hover,
+                    &:focus {
+                        color: @navbarLinkColorHover;
+                    }
+                }
+            }
+        }
+        &.show[data-enhanced] {
+            .menu {
+                li:first-child {
+                    background-color: @sidewayHeaderColor;
+                    color:  @navbarLinkColor;
+                    &:hover,
+                    &:focus {
+                        color: @sidewayHeaderColorHover;
+                    }
+                }
+                a {
+                    color: @sidewayHeaderColor;
+                    &:hover,
+                    &:focus {
+                        color: @navbarLinkColor;
+                    }
+                }
+            }
+        }
+    }
+}
+.jsenabled {
+    .moodle-actionmenu[data-enhance] {
+        .toggle-display {
+            &.textmenu {
+                .caret {
+                    border-bottom-color: @navbarLinkColor;
+                    border-top-color: @navbarLinkColor;
+                }
+            }
+        }
+    }
+}
+
+/* Navbar toggle background
+-------------------------*/
+
+.navbar .nav li.dropdown.open > .dropdown-toggle,
+.navbar .nav li.dropdown.active > .dropdown-toggle,
+.navbar .nav li.dropdown.open.active > .dropdown-toggle {
+    background-color: @navbarLinkBackgroundHover;
+    color: @navbarLinkColorHover;
+}
+
+.navbar .nav li.dropdown.open > .dropdown-toggle .caret,
+.navbar .nav li.dropdown.active > .dropdown-toggle .caret,
+.navbar .nav li.dropdown.open.active > .dropdown-toggle .caret {
+    border-bottom-color: @navbarLinkColorHover;
+    border-top-color: @navbarLinkColorHover;
+}
+
+.navbar .nav > li > .dropdown-menu::after {
+    border-bottom: 6px solid #ffffff;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    content: "";
+    display: inline-block;
+    left: 10px;
+    position: absolute;
+    top: -6px;
+}
+
+.dropdown-menu {
+    width: auto;
+    min-width: auto;
+}
+.jsenabled {
+    .usermenu {
+        .moodle-actionmenu {
+            &.show {
+                background-color: @navbarLinkBackgroundHover;
+                color: @navbarLinkColorHover;
+            }
+        }
+    }
+}
+/* Default Three Columns - All
+------------------------------*/
+
+.content-only {
+    #region-main-box,
+    #region-main {
+        width: 100%;
+    }
+}
+.empty-region-side-pre {
+    &.used-region-side-post {
+        #region-main {
+            width: 100%;
+        }
+    }
+}
+.empty-region-side-post {
+    &.used-region-side-pre {
+        #region-main-box {
+            width: 100%;
+        }
+    }
+}
+.jsenabled {
+    &.docked-region-side-pre {
+        &.empty-region-side-pre {
+            &.used-region-side-post {
+                #region-main {
+                    width: 100%;
+                }
+            }
+        }
+    }
+    &.docked-region-side-post {
+        &.empty-region-side-post {
+            &.used-region-side-pre {
+                #region-main-box {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+.empty-region-side-post.used-region-side-pre, // Post region is empty and pre region is in use.
+.jsenabled.docked-region-side-post.used-region-side-pre { // All post blocks docked and pre region is in use.
+    #region-main.span8 {
+    /** Increase the span size by 1 **/
+        .fluid-span(9);
+    }
+    #block-region-side-pre.span4 {
+    /** Decrease the span size by 1 **/
+        .fluid-span(3);
+    }
+}
+
+/** Page layout CSS ends **/
+
