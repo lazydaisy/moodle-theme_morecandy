@@ -168,7 +168,7 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
             if (isguestuser()) {
                 $loggedinas = $realuserinfo.get_string('loggedinasguest');
                 if (!$loginpage && $withlinks) {
-                    $loggedinas .= ' <a class="btn btn-small btn-default" href="$loginurl"><i class="fa fa-sign-in"></i> ' . get_string('login') . '</a>';
+                    $loggedinas .= ' <a class="btn btn-small btn-default" href="' . $loginurl . '"><i class="fa fa-sign-in"></i> ' . get_string('login') . '</a>';
                 }
             } else if (is_role_switched($course->id)) { // Has switched roles
                 $rolename = '';
@@ -177,18 +177,18 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
                 }
                 $loggedinas = get_string('loggedinas', 'moodle', $username).$rolename;
                 if ($withlinks) {
-                    $loggedinas .= ' (<a href="$CFG->wwwroot/course/view.php?id=$course->id&amp;switchrole=0&amp;sesskey='.sesskey().'">' . get_string('switchrolereturn') . '</a>)';
+                    $loggedinas .= ' (<a href="'.$CFG->wwwroot.'/course/view.php?id=$course->id&amp;switchrole=0&amp;sesskey='.sesskey().'">'.get_string('switchrolereturn').'</a>)';
                 }
             } else {
                 $loggedinas = $realuserinfo.get_string('loggedinas', 'moodle', $username);
                 if ($withlinks) {
-                    $loggedinas .= '&nbsp;&nbsp;<a class="btn btn-small" href="$CFG->wwwroot/login/logout.php?sesskey=' . sesskey() . '"><i class="fa fa-sign-out"></i> '.get_string('logout').'</a>';
+                    $loggedinas .= '&nbsp;&nbsp;<a class="btn btn-small" href="'.$CFG->wwwroot.'/login/logout.php?sesskey=' . sesskey() . '"><i class="fa fa-sign-out"></i> ' . get_string('logout') . '</a>';
                 }
             }
         } else {
             $loggedinas = get_string('loggedinnot', 'moodle');
             if (!$loginpage && $withlinks) {
-                $loggedinas .= ' <a class="btn btn-small btn-default" href="$loginurl"><i class="fa fa-sign-in"></i> '.get_string('login').'</a>';
+                $loggedinas .= ' <a class="btn btn-small btn-default" href="' . $loginurl . '"><i class="fa fa-sign-in"></i> '.get_string('login').'</a>';
             }
         }
 
