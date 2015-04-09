@@ -37,6 +37,7 @@
  */
 
 $plugins = array(
+    'bootstrap' => array('files' => array('plugins/bootstrap.js')),
     'carousel' => array('files' => array('plugins/bootstrap-carousel.js')),
     'tab' => array('files' => array('plugins/bootstrap-tab.js')),
 );

@@ -27,6 +27,7 @@
  * @copyright 2015 byLazyDaisy.uk
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
  $custommenu = $OUTPUT->custom_menu($PAGE->theme->settings->custommenuitems);
  $hascustommenu = (empty($PAGE->layout_options['nocustommenu']) && !empty($custommenu));
 
@@ -73,7 +74,13 @@ echo $OUTPUT->doctype() ?>
             </a>
             <?php echo $OUTPUT->user_menu(); ?>
             <div class="nav-collapse collapse">
-                <?php echo $OUTPUT->custom_menu(); ?>
+
+                <?php
+            if (!isloggedin()) {
+                echo $custommenu;
+            } else {
+                echo $OUTPUT->custom_menu();
+            } ?>
                 <ul class="nav pull-right">
                     <li><?php echo $OUTPUT->page_heading_menu(); ?></li>
                 </ul>

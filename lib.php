@@ -206,6 +206,7 @@ function morecandy_set_bgimage() {
 }
 
 function theme_morecandy_page_init(moodle_page $page) {
+    $page->requires->jquery_plugin('bootstrap', 'theme_morecandy');
     $page->requires->jquery_plugin('carousel', 'theme_morecandy');
     $page->requires->jquery_plugin('tab', 'theme_morecandy');
 }
