@@ -16,6 +16,8 @@
 @bodyColor: #036;
 @sidewayHeaderColor: #369;
 @sidewayHeaderColorHover: lighten(@sidewayHeaderColor, 25%);
+@navbarDividerLighter: @sidewayHeaderColorHover;
+@navbarDividerDarker: darken(@sidewayHeaderColor, 25%);
 
 body {
     color: @bodyColor;
@@ -103,10 +105,13 @@ h6 {font-size: 100%;}
 .pagelayout-redirect {
     text-align: center;
     margin: 0 25%;
+<<<<<<< HEAD
     background-image:  url([[pix:theme|bgbtm]]);
     background-position: 0 0;
     background-size: 100% auto;
     background-repeat: no-repeat;
+=======
+>>>>>>> MORECANDY_RC1
     background-color: #fff;
     .fa {
         margin: 2em 0 0;
@@ -239,25 +244,37 @@ h6 {font-size: 100%;}
             text-decoration: none;
         }
     }
-    .nav li.dropdown > {
-        .dropdown-toggle {
-            .caret {
-                border-bottom-color: @navbarLinkColor;
-                border-top-color: @navbarLinkColor;
+    .nav {
+        .divider {
+            border-left-color: @navbarDividerDarker;
+            border-right-color: @navbarDividerLighter;
+        }
+        li.dropdown {
+            &.langmenu {
+                li {
+                    min-width: 160px;
+                }
+            }
+        }
+        li.dropdown > {
+            .dropdown-toggle {
+                .caret {
+                    border-bottom-color: @navbarLinkColor;
+                    border-top-color: @navbarLinkColor;
+                }
             }
         }
     }
 }
 .usermenu {
-    .login > a:link {
-        color: @sidewayHeaderColor;
-        border-bottom: 1px dotted @sidewayHeaderColorHover;
+    .login > a {
+        color: @navbarLinkColor;
     }
     .login {
-        color: @sidewayHeaderColorHover;
+        color: @navbarLinkColor;
         a:hover,
         a:focus {
-            color: @navbarLinkColorHover;
+            color: @sidewayHeaderColorHover;
         }
     }
     .moodle-actionmenu {
@@ -374,6 +391,7 @@ h6 {font-size: 100%;}
 }
 .empty-region-side-pre {
     &.used-region-side-post {
+        #region-main-box,
         #region-main {
             width: 100%;
         }
@@ -381,7 +399,8 @@ h6 {font-size: 100%;}
 }
 .empty-region-side-post {
     &.used-region-side-pre {
-        #region-main-box {
+        #region-main-box,
+        #region-main {
             width: 100%;
         }
     }
@@ -406,6 +425,8 @@ h6 {font-size: 100%;}
         }
     }
 }
+.dropdown-menu .divider {
+    margin: 0 1px;
+}
 
 /** Page layout CSS ends **/
-

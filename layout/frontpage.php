@@ -27,13 +27,12 @@
  * @copyright 2015 byLazyDaisy.uk
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
  $custommenu = $OUTPUT->custom_menu($PAGE->theme->settings->custommenuitems);
  $hascustommenu = (empty($PAGE->layout_options['nocustommenu']) && !empty($custommenu));
 
 
 // Get the HTML for the various settings.
-$html = theme_clean_get_html_for_settings($OUTPUT, $PAGE);
+$html = theme_morecandy_get_html_for_settings($OUTPUT, $PAGE);
 
 // Set default (LTR) layout mark-up for a three column page.
 $regionmainbox = 'span9';
@@ -61,7 +60,7 @@ echo $OUTPUT->doctype() ?>
 
 <?php echo $OUTPUT->standard_top_of_body_html() ?>
 
-<header role="banner" class="navbar navbar-fixed-top<?php echo $html->navbarclass ?> moodle-has-zindex">
+<header role="banner" class="navbar navbar-fixed-top moodle-has-zindex">
     <nav role="navigation" class="navbar-inner">
         <div class="container-fluid">
             <a class="brand" href="<?php echo $CFG->wwwroot;?>"><?php echo

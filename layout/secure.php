@@ -23,7 +23,7 @@
  */
 
 // Get the HTML for the various settings.
-$html = theme_clean_get_html_for_settings($OUTPUT, $PAGE);
+$html = theme_morecandy_get_html_for_settings($OUTPUT, $PAGE);
 
 // Set default (LTR) layout mark-up for a three column page.
 $regionmainbox = 'span9';

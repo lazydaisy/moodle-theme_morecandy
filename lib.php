@@ -28,19 +28,14 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
 /**
- * Returns an object containing HTML for the areas affected by settings.
+ * Parses CSS before it is cached.
  *
- * Do not add morecandy specific logic in here, child themes should be able to
- * rely on that function just by declaring settings with similar names.
+ * This function can make alterations and replace patterns within the CSS.
  *
- * @param renderer_base $output Pass in $OUTPUT.
- * @param moodle_page $page Pass in $PAGE.
- * @return stdClass An object with the following properties:
- *      - navbarclass A CSS class to use on the navbar. By default ''.
- *      - heading HTML to use for the heading. A logo if one is selected or the default heading.
- *      - footnote HTML to use as a footnote. By default ''.
+ * @param string $css The CSS
+ * @param theme_config $theme The theme config object.
+ * @return string The parsed CSS The parsed CSS.
  */
 function theme_morecandy_process_css($css, $theme) {
 
@@ -55,10 +50,6 @@ function theme_morecandy_process_css($css, $theme) {
         $customcss = null;
     }
     $css = theme_morecandy_set_customcss($css, $customcss);
-
-    // Set the background image for the body.
-    $bgimage = $theme->setting_file_url('bgimage', 'bgimage');
-    $css = theme_morecandy_set_bgimage($css, $bgimage);
 
     return $css;
 }
@@ -83,25 +74,6 @@ function theme_morecandy_set_logo($css, $logo) {
 }
 
 /**
- * Adds the bgimage to CSS.
- *
- * @param string $css The CSS.
- * @param string $bgimage The URL of the bgimage.
- * @return string The parsed CSS
- */
-function theme_morecandy_set_bgimage($css, $bgimage) {
-    $tag = '[[setting:bgimage]]';
-    $replacement = $bgimage;
-    if (is_null($replacement)) {
-        $replacement = '';
-    }
-
-    $css = str_replace($tag, $replacement, $css);
-
-    return $css;
-}
-
-/**
  * Serves any files associated with the theme settings.
  *
  * @param stdClass $course
@@ -116,10 +88,11 @@ function theme_morecandy_set_bgimage($css, $bgimage) {
 function theme_morecandy_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
     if ($context->contextlevel == CONTEXT_SYSTEM and $filearea === 'logo') {
         $theme = theme_config::load('morecandy');
+        // By default, theme files must be cache-able by both browsers and proxies.
+        if (!array_key_exists('cacheability', $options)) {
+            $options['cacheability'] = 'public';
+        }
         return $theme->setting_file_serve('logo', $args, $forcedownload, $options);
-    } else if ($context->contextlevel == CONTEXT_SYSTEM and $filearea === 'bgimage') {
-        $theme = theme_config::load('morecandy');
-        return $theme->setting_file_serve('bgimage', $args, $forcedownload, $options);
     } else {
         send_file_not_found();
     }
@@ -147,7 +120,7 @@ function theme_morecandy_set_customcss($css, $customcss) {
 /**
  * Returns an object containing HTML for the areas affected by settings.
  *
- * Do not add morecandy specific logic in here, child themes should be able to
+ * Do not add theme specific logic in here, child themes should be able to
  * rely on that function just by declaring settings with similar names.
  *
  * @param renderer_base $output Pass in $OUTPUT.
@@ -161,9 +134,10 @@ function theme_morecandy_get_html_for_settings(renderer_base $output, moodle_pag
     global $CFG;
     $return = new stdClass;
 
-    $return->heading = '';
     if (!empty($page->theme->settings->logo)) {
-        $return->heading = html_writer::tag('div', '' , array('id' => 'logo'));
+        $return->heading = '<div class="logo"></div>';
+    } else {
+        $return->heading = $output->page_heading();
     }
 
     $return->footnote = '';
@@ -173,37 +147,9 @@ function theme_morecandy_get_html_for_settings(renderer_base $output, moodle_pag
 
     return $return;
 }
-/**
- * All theme functions should start with theme_morecandy_
- * @deprecated since 2.5.1
- */
-function morecandy_process_css() {
-    throw new coding_exception('Please call theme_'.__FUNCTION__.' instead of '.__FUNCTION__);
-}
 
 /**
- * All theme functions should start with theme_morecandy_
- * @deprecated since 2.5.1
- */
-function morecandy_set_logo() {
-    throw new coding_exception('Please call theme_'.__FUNCTION__.' instead of '.__FUNCTION__);
-}
-
-/**
- * All theme functions should start with theme_morecandy_
- * @deprecated since 2.5.1
- */
-function morecandy_set_customcss() {
-    throw new coding_exception('Please call theme_'.__FUNCTION__.' instead of '.__FUNCTION__);
-}
-
-/**
- * All theme functions should start with theme_morecandy_
- * @deprecated since 2.5.1
- */
-function morecandy_set_bgimage() {
-    throw new coding_exception('Please call theme_'.__FUNCTION__.' instead of '.__FUNCTION__);
-}
+ * Page requires jQuery. */
 
 function theme_morecandy_page_init(moodle_page $page) {
     $page->requires->jquery_plugin('bootstrap', 'theme_morecandy');
