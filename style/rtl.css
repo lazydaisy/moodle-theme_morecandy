@@ -10,7 +10,6 @@
     margin: 0 0 0 10px;
 }
 
->>>>>>> MORECANDY_RC1
 .dir-rtl .block .content .userpicture {
     margin-left: 6px;
     margin-right: 0;
@@ -54,7 +53,7 @@
     transform-origin: 100% 0;
     transform: rotate(0);
 }
-}
+
 .dir-rtl.jsenabled .block_adminblock .content .singleselect {
     margin-left: 0;
     margin-right: 1px;
