@@ -15,23 +15,34 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Theme Morecansy version file.
+ * Theme Morecandy upgrade.
  *
  * @package    theme_morecandy
- * @copyright  2015 byLazyDaisy.uk
+ * @copyright  2015 LazyDaisy.uk
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die;
+defined('MOODLE_INTERNAL') || die();
 
+/**
+ * Theme_more upgrade function.
+ *
+ * @param  int $oldversion The version we upgrade from.
+ * @return bool
+ */
+function xmldb_theme_morecandy_upgrade($oldversion) {
+    global $CFG;
 
-$plugin->version   = 2015030502;
-$plugin->maturity  = 'RELEASE_CANDIDATE';
-$plugin->release   = '2.01 (Build: 2015041200)';
-$plugin->requires  = 2014110400;
-$plugin->component = 'theme_morecandy';
-$plugin->dependencies = array(
-    'theme_bootstrapbase'  => 2014110400,
-    'theme_clean'  => 2014110400,
-);
+    if ($oldversion < 2015030502) {
 
+        // Set the default settings as they might already be set.
+        set_config('sidewayheadercolor', '#336699', 'theme_morecandy');
+
+        upgrade_plugin_savepoint(true, 2015030502, 'theme', 'morecandy');
+    }
+
+    // Moodle v2.9.0 release upgrade line.
+    // Put any upgrade step following this.
+
+    return true;
+}

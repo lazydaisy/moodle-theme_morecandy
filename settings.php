@@ -32,6 +32,15 @@ defined('MOODLE_INTERNAL') || die;
 
 if ($ADMIN->fulltree) {
 
+    // @textColor setting.
+    $name = 'theme_morecandy/sidewayheadercolor';
+    $title = get_string('sidewayheadercolor', 'theme_morecandy');
+    $description = get_string('sidewayheadercolor_desc', 'theme_morecandy');
+    $default = '#336699';
+    $setting = new admin_setting_configcolourpicker($name, $title, $description, $default, null, false);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $settings->add($setting);
+
     // Logo file setting.
     $name = 'theme_morecandy/logo';
     $title = get_string('logo','theme_morecandy');

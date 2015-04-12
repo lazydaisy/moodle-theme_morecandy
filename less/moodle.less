@@ -3,21 +3,46 @@
  */
  @import "../../bootstrapbase/less/moodle.less";
 
-// Set the secondary background.
-@tableBackgroundAccent: darken(@wellBackground, 5%);
-@tableBackgroundHover: darken(@wellBackground, 10%);
-@tableBorder: @wellBorder;
-@navbarBackground: @wellBackground;
-@navbarLinkColor: @white;
-@navbarLinkColorHover: @sidewayHeaderColorHover;
-@formActionsBackground: @wellBackground;
-@paginationActiveBackground: @wellBackground;
-@hrBorder: darken(@wellBackground, 5%);
-@bodyColor: #036;
-@sidewayHeaderColor: #369;
-@sidewayHeaderColorHover: lighten(@sidewayHeaderColor, 25%);
-@navbarDividerLighter: @sidewayHeaderColorHover;
-@navbarDividerDarker: darken(@sidewayHeaderColor, 25%);
+// Set body text and sideway header colours
+@bodyColor:                         #036;
+@sidewayHeaderColor:                #369; // Alternative #6F6B8E
+
+@navbarLinkColor:                   @white;
+
+@sidewayHeaderColorHover:           lighten(@sidewayHeaderColor, 25%);
+@navbarDividerDarker:               darken(@sidewayHeaderColor, 25%);
+@navbarDividerLighter:              @sidewayHeaderColorHover;
+@navbarLinkColorHover:              @sidewayHeaderColorHover;
+@btnPrimaryBackground:              @sidewayHeaderColor;
+@btnPrimaryBackgroundHighlight:     @sidewayHeaderColorHover;
+
+@hrBorder:                          @tableBackgroundAccent;
+
+@formActionsBackground:             @wellBackground;
+@navbarBackground:                  @wellBackground;
+@paginationActiveBackground:        @wellBackground;
+@tableBackgroundAccent:             darken(@wellBackground, 5%);
+@tableBackgroundHover:              darken(@wellBackground, 10%);
+@tableBorder:                       @wellBorder;
+
+
+/* Modified Moodle CSS by Mary Evans based on
+   CSS-Tricks Example
+   by Chris Coyier
+   https://css-tricks.com/sideways-headers/
+   ----------------------------------------*/
+
+.jsenabled .block {
+    border-color: @sidewayHeaderColor;
+}
+
+.jsenabled .block.hidden,
+.jsenabled .block.block_adminblock {
+    background-color: @sidewayHeaderColor;
+}
+
+/* End sidewayheadercolor
+-------------------------*/
 
 body {
     color: @bodyColor;
@@ -80,22 +105,24 @@ h6 {font-size: 100%;}
             width: 100%;
             float: left;
         }
-    }
-    > .info {
-        > .coursename {
-            width: auto;
-        }
-    }
-}
-.coursebox {
-    .content {
         .teachers,
         .courseimage,
         .coursefile {
             width: 100%;
         }
     }
+    > .info {
+        > .coursename {
+            width: auto;
+            a {
+                background-image: url([[pix:theme|course]]);
+                background-position: left top;
+                float: left;
+            }
+        }
+    }
 }
+
 #page-course-index-category {
     .generalbox.info {
         margin: 1em 0;
@@ -115,17 +142,6 @@ h6 {font-size: 100%;}
     #notice {
         width: 100%;
         text-align: justify;
-    }
-}
-.coursebox {
-    > .info {
-        > .coursename {
-            a {
-                background-image: url([[pix:theme|course]]);
-                background-position: left top;
-                float: left;
-            }
-        }
     }
 }
 #page-navbar {
@@ -185,6 +201,8 @@ h6 {font-size: 100%;}
         border-radius: 50% 50% 6%;
     }
 }
+/* Forum post
+-------------------------*/
 .forumpost {
     .picture {
         img.userpicture {
@@ -356,17 +374,30 @@ h6 {font-size: 100%;}
 .dropdown-menu {
     width: auto;
     min-width: auto;
+    divider {
+        margin: 0 1px;
+    }
 }
+
 .jsenabled {
     .usermenu {
         .moodle-actionmenu {
             &.show {
                 background-color: @navbarLinkBackgroundHover;
                 color: @navbarLinkColorHover;
+                .menu a:hover {
+                    background: none;
+                    background-color: @sidewayHeaderColor;
+                }
             }
         }
     }
 }
+#dockeditempanel .dockeditempanel_content {
+    border: 1px solid @sidewayHeaderColor;
+    width: auto;
+}
+
 /* Default Three Columns - All
 ------------------------------*/
 .has-region-side-pre {
@@ -418,8 +449,6 @@ h6 {font-size: 100%;}
         }
     }
 }
-.dropdown-menu .divider {
-    margin: 0 1px;
-}
-
 /** Page layout CSS ends **/
+
+

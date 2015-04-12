@@ -50,6 +50,9 @@ $string['pluginname'] = 'Morecandy';
 $string['region-side-post'] = 'Right';
 $string['region-side-pre'] = 'Left';
 
+$string['sidewayheadercolor'] = 'Sideway header colour';
+$string['sidewayheadercolor_desc'] = 'This setting allows you to choose a colour to repace the default which is a shade of blue.';
+
 $string['tryingtoredirectyou'] = 'We are trying to redirect you - thank you for your patience.';
 
 $string['mygrades'] = 'My Grades';

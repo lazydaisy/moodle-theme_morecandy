@@ -37,6 +37,14 @@
  * @param theme_config $theme The theme config object.
  * @return string The parsed CSS The parsed CSS.
  */
+function theme_morecandy_less_variables($theme) {
+    $variables = array();
+    if (!empty($theme->settings->sidewayheadercolor)) {
+        $variables['sidewayHeaderColor'] = $theme->settings->sidewayheadercolor;
+    }
+    return $variables;
+}
+
 function theme_morecandy_process_css($css, $theme) {
 
     // Set the background image for the logo.
