@@ -63,6 +63,7 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
         }
 
         $content = '<ul class="nav">';
+        $content .= '<li class="first divider">';
         foreach ($menu->get_children() as $item) {
             $content .= $this->render_custom_menu_item($item, 1);
         }
