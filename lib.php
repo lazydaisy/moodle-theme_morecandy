@@ -47,6 +47,10 @@ function theme_morecandy_less_variables($theme) {
 
 function theme_morecandy_process_css($css, $theme) {
 
+    // Set the background image for the 'Brand' icon.
+    $brandicon = $theme->setting_file_url('brandicon', 'brandicon');
+    $css = theme_morecandy_set_brandicon($css, $brandicon);
+
     // Set the background image for the logo.
     $logo = $theme->setting_file_url('logo', 'logo');
     $css = theme_morecandy_set_logo($css, $logo);
@@ -58,6 +62,25 @@ function theme_morecandy_process_css($css, $theme) {
         $customcss = null;
     }
     $css = theme_morecandy_set_customcss($css, $customcss);
+
+    return $css;
+}
+
+/**
+ * Adds the 'Brand' icon to CSS.
+ *
+ * @param string $css The CSS.
+ * @param string $brandicon The URL of the navbar 'Brand' icon.
+ * @return string The parsed CSS
+ */
+function theme_morecandy_set_brandicon($css, $brandicon) {
+    $tag = '[[setting:brandicon]]';
+    $replacement = $brandicon;
+    if (is_null($replacement)) {
+        $replacement = '';
+    }
+
+    $css = str_replace($tag, $replacement, $css);
 
     return $css;
 }
@@ -94,13 +117,13 @@ function theme_morecandy_set_logo($css, $logo) {
  * @return bool
  */
 function theme_morecandy_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
-    if ($context->contextlevel == CONTEXT_SYSTEM and $filearea === 'logo') {
+    if ($context->contextlevel == CONTEXT_SYSTEM && ($filearea === 'logo' || $filearea === 'brandicon')) {
         $theme = theme_config::load('morecandy');
         // By default, theme files must be cache-able by both browsers and proxies.
         if (!array_key_exists('cacheability', $options)) {
             $options['cacheability'] = 'public';
         }
-        return $theme->setting_file_serve('logo', $args, $forcedownload, $options);
+        return $theme->setting_file_serve($filearea, $args, $forcedownload, $options);
     } else {
         send_file_not_found();
     }
@@ -139,13 +162,23 @@ function theme_morecandy_set_customcss($css, $customcss) {
  *      - footnote HTML to use as a footnote. By default ''.
  */
 function theme_morecandy_get_html_for_settings(renderer_base $output, moodle_page $page) {
-    global $CFG;
+    global $CFG, $SITE;
     $return = new stdClass;
+
+    $return->branding = '';
+    if (empty($page->theme->settings->brandicon)) {
+        $return->branding = format_string($SITE->shortname, true, array('context' => context_course::instance(SITEID)));
+    }
 
     if (!empty($page->theme->settings->logo)) {
         $return->heading = '<div class="logo"></div>';
     } else {
         $return->heading = $output->page_heading();
+    }
+
+    $return->welcomenote = '';
+    if (!empty($page->theme->settings->welcomenote)) {
+        $return->welcomenote = '<div class="row-fluid">'.format_text($page->theme->settings->welcomenote).'</div>';
     }
 
     $return->footnote = '';
@@ -156,11 +189,3 @@ function theme_morecandy_get_html_for_settings(renderer_base $output, moodle_pag
     return $return;
 }
 
-/**
- * Page requires jQuery. */
-
-function theme_morecandy_page_init(moodle_page $page) {
-    $page->requires->jquery_plugin('bootstrap', 'theme_morecandy');
-    $page->requires->jquery_plugin('carousel', 'theme_morecandy');
-    $page->requires->jquery_plugin('tab', 'theme_morecandy');
-}

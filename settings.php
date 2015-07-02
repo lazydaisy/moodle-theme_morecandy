@@ -32,13 +32,29 @@ defined('MOODLE_INTERNAL') || die;
 
 if ($ADMIN->fulltree) {
 
-    // @textColor setting.
+    // @sidewayHeaderColor setting.
     $name = 'theme_morecandy/sidewayheadercolor';
     $title = get_string('sidewayheadercolor', 'theme_morecandy');
     $description = get_string('sidewayheadercolor_desc', 'theme_morecandy');
     $default = '#336699';
     $setting = new admin_setting_configcolourpicker($name, $title, $description, $default, null, false);
     $setting->set_updatedcallback('theme_reset_all_caches');
+    $settings->add($setting);
+
+    // Brand icon.
+    $name = 'theme_morecandy/brandicon';
+    $title = get_string('brandicon','theme_morecandy');
+    $description = get_string('brandicondesc', 'theme_morecandy');
+    $setting = new admin_setting_configstoredfile($name, $title, $description, 'brandicon');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $settings->add($setting);
+
+    // Welcome note setting
+    $name = 'theme_morecandy/welcomenote';
+    $title = get_string('welcomenote','theme_morecandy');
+    $description = get_string('welcomenotedesc', 'theme_morecandy');
+    $default = '';
+    $setting = new admin_setting_confightmleditor($name, $title, $description, $default);
     $settings->add($setting);
 
     // Logo file setting.

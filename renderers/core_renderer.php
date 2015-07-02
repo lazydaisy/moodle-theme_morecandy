@@ -26,6 +26,50 @@ include_once ($CFG->dirroot. '/theme/bootstrapbase/renderers.php');
 
 class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
 
+    /*
+     * This renders the bootstrap top menu.
+     *
+     * This renderer is needed to enable the Bootstrap style navigation.
+     */
+    protected function render_custom_menu(custom_menu $menu) {
+        global $CFG;
+
+        // TODO: eliminate this duplicated logic, it belongs in core, not
+        // here. See MDL-39565.
+        $addlangmenu = true;
+        $langs = get_string_manager()->get_list_of_translations();
+        if (count($langs) < 2
+            or empty($CFG->langmenu)
+            or ($this->page->course != SITEID and !empty($this->page->course->lang))) {
+            $addlangmenu = false;
+        }
+
+        if (!$menu->has_children() && $addlangmenu === false) {
+            return '';
+        }
+
+        if ($addlangmenu) {
+            $strlang =  get_string('language');
+            $currentlang = current_language();
+            if (isset($langs[$currentlang])) {
+                $currentlang = $langs[$currentlang];
+            } else {
+                $currentlang = $strlang;
+            }
+            $this->language = $menu->add($currentlang, new moodle_url('#'), $strlang, 10000);
+            foreach ($langs as $langtype => $langname) {
+                $this->language->add($langname, new moodle_url($this->page->url, array('lang' => $langtype)), $langname);
+            }
+        }
+
+        $content = '<ul class="nav">';
+        foreach ($menu->get_children() as $item) {
+            $content .= $this->render_custom_menu_item($item, 1);
+        }
+        $content .= '<li class="last divider">';
+        return $content.'</ul>';
+    }
+
     /**
      * The standard tags (typically performance information and validation links,
      * if we are in developer debug mode) that should be output in the footer area
@@ -271,7 +315,7 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
         $output .= $this->notification($message, 'redirectmessage');
         $output .= '<div class="continuebutton">(<a href="'. $encodedurl .'">'.
                     get_string('tryingtoredirectyou', 'theme_morecandy') . '</a>)</div>';
-        $output .= '<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>';
+        $output .= '<i class="fa fa-spinner fa-spin fa-3x"></i>';
         if ($debugdisableredirect) {
             $output .= '<p><strong>'.get_string('erroroutput', 'error').'</strong></p>';
         }
@@ -360,6 +404,7 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
         't/edit' => 'edit',
         't/edit_menu' => 'cog',
         't/editstring' => 'pencil',
+        't/grades' => 'bar-chart',
         't/groupn' => 'group',
         't/groups' => 'group',
         't/groupv' => 'group',
@@ -367,6 +412,7 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
         't/left' => 'arrow-left',
         't/message' => 'retweet',
         't/move' => 'crosshairs',
+        't/preferences' => 'coffee',
         't/right' => 'arrow-right',
         't/show' => 'eye-slash',
         't/switch_minus' => 'toggle-up',

@@ -25,6 +25,13 @@
 @tableBackgroundHover:              darken(@wellBackground, 10%);
 @tableBorder:                       @wellBorder;
 
+@dropdownLinkColor:                 @sidewayHeaderColor;
+@dropdownLinkColorHover:            @navbarLinkColor;
+@dropdownLinkBackgroundHover:       @sidewayHeaderColor;
+
+@navbarBorder:                      @navbarDividerDarker;
+@navbarBackgroundHighlight:         @navbarDividerLighter;
+
 
 /* Modified Moodle CSS by Mary Evans based on
    CSS-Tricks Example
@@ -43,7 +50,10 @@
 
 /* End sidewayheadercolor
 -------------------------*/
-
+body.notloggedin,
+body.pagelayout-frontpage {
+    padding-top: 40px;
+}
 body {
     color: @bodyColor;
     font-family: 'Trebuchet MS', sans-serif;
@@ -178,6 +188,10 @@ h6 {font-size: 100%;}
 .fa:before {
     margin-right: 3px;
 }
+.usermenu i.fa {
+    width: 25px;
+    margin: 0;
+}
 
 /* User avatars
 -------------------------*/
@@ -200,7 +214,28 @@ h6 {font-size: 100%;}
         border-width: 1px;
         border-radius: 50% 50% 6%;
     }
+    li a {
+        font-size: 16px;
+    }
+    .moodle-actionmenu {
+        .toggle-display {
+            color: @sidewayHeaderColor;
+        }
+    }
+    &.show[data-enhanced] {
+        .menu {
+            a {
+                padding: 2px 1em;
+            }
+        }
+    }
+    .menu {
+        a {
+            outline: 0 none;
+        }
+    }
 }
+
 /* Forum post
 -------------------------*/
 .forumpost {
@@ -240,7 +275,7 @@ h6 {font-size: 100%;}
 // Navbar
 .navbar {
     .nav > li > a,
-    .brand {
+    a.brand {
         color: @navbarLinkColor;
         text-shadow: none;
         &:hover {
@@ -359,26 +394,6 @@ h6 {font-size: 100%;}
     border-bottom-color: @navbarLinkColorHover;
     border-top-color: @navbarLinkColorHover;
 }
-
-.navbar .nav > li > .dropdown-menu::after {
-    border-bottom: 6px solid #ffffff;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    content: "";
-    display: inline-block;
-    left: 10px;
-    position: absolute;
-    top: -6px;
-}
-
-.dropdown-menu {
-    width: auto;
-    min-width: auto;
-    divider {
-        margin: 0 1px;
-    }
-}
-
 .jsenabled {
     .usermenu {
         .moodle-actionmenu {
@@ -397,6 +412,82 @@ h6 {font-size: 100%;}
     border: 1px solid @sidewayHeaderColor;
     width: auto;
 }
+
+@media and (max-width: 979px) {
+    .navbar {
+        .nav-collapse.in {
+            border-top-width: 0;
+            &.pull-left,
+            &.pull-right {
+                float: none;
+            }
+            > .nav {
+                margin: 0;
+
+                // Add padding to first-level links.
+                > li > a {
+                    padding-left: 20px;
+                    border-radius: 0;
+                }
+                .dropdown-menu {
+                    margin: 0 0 0 15px;
+                    li > a {
+                        border-radius: 0;
+                    }
+                }
+            }
+
+            .nav,
+            .nav .dropdown-menu {
+                .dropdown-submenu {
+                    .dropdown-toggle {
+                        &:after {
+                            display: inline-block;
+                            float: none;
+                            .caret();
+                            border-top-color: @navbarBorder;
+                            margin-left: 4px;
+                            margin-top: 8px;
+                        }
+                    }
+
+                    &.open {
+                        > a {
+                            background-color: @navbarBackground;
+                        }
+                    }
+
+                    // Suppress showing of submenu menu content on hover.
+                    &:hover {
+                        .dropdown-menu {
+                            display: none;
+                        }
+                        &.open {
+                            > a {
+                                background-color: @navbarBackground;
+                            }
+                            > .dropdown-menu,
+                            .open > .dropdown-menu {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+                .divider {
+                    width: auto;
+                    display: block;
+                    height: 0;
+                    margin: 4px 1px;
+                    border-left: 0 none;
+                    border-right: 0 none;
+                    border-top: 1px solid @navbarBorder;
+                    border-bottom: 1px solid @navbarBackgroundHighlight;
+                }
+            }
+        }
+    }
+}
+
 
 /* Default Three Columns - All
 ------------------------------*/
@@ -451,4 +542,101 @@ h6 {font-size: 100%;}
 }
 /** Page layout CSS ends **/
 
+/* Experimental
+-------------------------*/
 
+#page-site-index {
+    #region-main {
+        .sitetopic {
+            img.iconsmall {
+                background-image: linear-gradient(to bottom, @sidewayHeaderColor, @sidewayHeaderColorHover);
+                background-repeat: repeat-x;
+                border: 2px solid @sidewayHeaderColor;
+                color: #fff;
+                text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+                width: 20px;
+                height: 20px;
+                border-radius: 5px;
+                margin: 0 10px;
+            }
+        }
+    }
+}
+
+/* Langmenu - @font icons
+-------------------------*/
+.navbar {
+    .nav > {
+        li.langmenu {
+            &.open > {
+                .dropdown-menu {
+                    display: block;
+                    max-height: 400px;
+                    overflow-y: visible;
+                }
+                &:before,
+                &:after {
+                    overflow: visible;
+                }
+            }
+        }
+    }
+}
+/* Frontpage Folly
+-------------------------*/
+#page-site-index .sitetopic,
+#site-news-forum,
+#frontpage-category-names,
+#frontpage-category-combo,
+#frontpage-course-list {
+    position: relative;
+    border-color: @sidewayHeaderColor;
+    border-style: solid;
+    border-width: 1px 1px 1px 34px;
+    h2 {
+        font: bold 12px Sans-Serif;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: @navbarLinkColor;
+        line-height: 24px;
+        /* Abs positioning makes it not take up vert space */
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        /* Border is the new background */
+        background: none;
+
+        /* Rotate from top left corner (not default) */
+
+        -webkit-transform-origin: 0 0;
+           -moz-transform-origin: 0 0;
+            -ms-transform-origin: 0 0;
+             -o-transform-origin: 0 0;
+                transform-origin: 0 0;
+
+        -webkit-transform: rotate(90deg);
+           -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+             -o-transform: rotate(90deg);
+                transform: rotate(90deg);
+    }
+}
+#frontpage-category-combo {
+    min-height: 100px;
+}
+#frontpage-category-names {
+    min-height: 180px;
+}
+#frontpage-course-list {
+    min-height: 300px;
+}
+#page-site-index .sitetopic {
+    min-height: 200px;
+    margin-bottom: 15px;
+    padding-top: 10px;
+}
+
+#frontpage-category-combo .course_category_tree .category > .content {
+    padding-left: 0;
+}

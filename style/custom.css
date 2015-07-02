@@ -6,12 +6,18 @@ div.logo {
     background-repeat: no-repeat;
     display: block;
     float: none;
-    height: 200px;
-    margin: 0;
+    margin: 0 0 20px;
     padding: 0;
     width: 100%;
+    height: 200px;
 }
-
+a.brand {
+    background-image: url([[setting:brandicon]]);
+    background-position: center;
+    background-repeat: no-repeat;
+    display: block;
+    height: 20px;
+}
 /* Custom CSS Settings
 -------------------------*/
 [[setting:customcss]]

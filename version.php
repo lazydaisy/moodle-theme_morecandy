@@ -25,13 +25,13 @@
 defined('MOODLE_INTERNAL') || die;
 
 
-$plugin->version   = 2015030502;
+$plugin->version   = 2015070200;
 $plugin->maturity  = 'RELEASE_CANDIDATE';
-$plugin->release   = '2.01 (Build: 2015041200)';
-$plugin->requires  = 2014110400;
+$plugin->release   = '2.02 (Build: 201500702)';
+$plugin->requires  = 2015050500;
 $plugin->component = 'theme_morecandy';
 $plugin->dependencies = array(
-    'theme_bootstrapbase'  => 2014110400,
-    'theme_clean'  => 2014110400,
+    'theme_bootstrapbase'  => 2015051100,
+    'theme_clean'  => 2015051100,
 );
 

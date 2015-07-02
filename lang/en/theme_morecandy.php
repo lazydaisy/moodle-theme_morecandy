@@ -56,5 +56,10 @@ $string['sidewayheadercolor_desc'] = 'This setting allows you to choose a colour
 $string['tryingtoredirectyou'] = 'We are trying to redirect you - thank you for your patience.';
 
 $string['mygrades'] = 'My Grades';
-$string['welcome'] = 'Welcome back {$a}!';
 
+$string['brandicon'] = 'Navbar \'Brand\' icon';
+$string['brandicondesc'] = 'This setting allows you to add a small \'Brand\' icon into the top navbar. The icon can not be more than 35px high, but can be any length up 150px.';
+
+$string['welcome'] = 'Welcome back {$a}!';
+$string['welcomenote'] = 'Welcome note';
+$string['welcomenotedesc'] = 'Here you can add your own personal welcome note';
