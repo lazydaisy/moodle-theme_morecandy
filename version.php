@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Theme Morecansy version file.
+ * Theme Morecandy version file.
  *
  * @package    theme_morecandy
  * @copyright  2015 byLazyDaisy.uk
@@ -27,7 +27,7 @@ defined('MOODLE_INTERNAL') || die;
 
 $plugin->version   = 2015070200;
 $plugin->maturity  = 'RELEASE_CANDIDATE';
-$plugin->release   = '2.02 (Build: 201500702)';
+$plugin->release   = '2.02 (Build: 20150702)';
 $plugin->requires  = 2015050500;
 $plugin->component = 'theme_morecandy';
 $plugin->dependencies = array(
