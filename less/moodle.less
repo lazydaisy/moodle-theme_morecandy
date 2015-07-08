@@ -624,19 +624,36 @@ h6 {font-size: 100%;}
 }
 #frontpage-category-combo {
     min-height: 100px;
+    .course_category_tree {
+        .category {
+            > .content {
+                padding-left: 0;
+            }
+        }
+    }
 }
+#frontpage-category-combo,
+#frontpage-category-names,
+#frontpage-course-list {
+    .course_category_tree {
+        padding: 10px;
+    }
+}
+
 #frontpage-category-names {
     min-height: 180px;
 }
+
 #frontpage-course-list {
     min-height: 300px;
+    .frontpage-course-list-enrolled {
+        padding: 10px;
+    }
 }
+
 #page-site-index .sitetopic {
     min-height: 200px;
     margin-bottom: 15px;
     padding-top: 10px;
 }
 
-#frontpage-category-combo .course_category_tree .category > .content {
-    padding-left: 0;
-}
