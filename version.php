@@ -25,9 +25,9 @@
 defined('MOODLE_INTERNAL') || die;
 
 
-$plugin->version   = 2015070200;
-$plugin->maturity  = 'RELEASE_CANDIDATE';
-$plugin->release   = '2.02 (Build: 20150702)';
+$plugin->version   = 2015070800;
+$plugin->maturity  = 'MATURITY_STABLE';
+$plugin->release   = '1.00 (Build: 20150708)';
 $plugin->requires  = 2015050500;
 $plugin->component = 'theme_morecandy';
 $plugin->dependencies = array(
