@@ -104,6 +104,9 @@
 .jsenabled .block_blog_recent {
     min-height: 120px;
 }
+.jsenabled .block_progress {
+    min-height: 135px;
+}
 .jsenabled .block_private_files {
     min-height: 150px;
 }
@@ -157,3 +160,14 @@
 .jsenabled .block_completionstatus {
     min-height: 175px;
 }
+
+/** Special case needs top padding to see block action icons **/
+.jsenabled .block_search_forums .searchform {
+    padding-top: 20px;
+}
+
+/** Added CSS for commands  **/
+
+.block .header .commands { display: none;}
+
+.editing .block .header .commands { display: block;}

@@ -61,20 +61,20 @@ $THEME->layouts = array(
     ),
     // Main course page.
     'course' => array(
-        'file' => 'columns3.php',
-        'regions' => array('side-pre', 'side-post'),
+        'file' => 'columns2.php',
+        'regions' => array('side-pre'),
         'defaultregion' => 'side-pre',
         'options' => array('langmenu' => true),
     ),
     'coursecategory' => array(
-        'file' => 'columns3.php',
-        'regions' => array('side-pre', 'side-post'),
+        'file' => 'columns2.php',
+        'regions' => array('side-pre'),
         'defaultregion' => 'side-pre',
     ),
     // Part of course, typical for modules - default page layout if $cm specified in require_login().
     'incourse' => array(
-        'file' => 'columns3.php',
-        'regions' => array('side-pre', 'side-post'),
+        'file' => 'columns2.php',
+        'regions' => array('side-pre'),
         'defaultregion' => 'side-pre',
     ),
     // The site home page.
@@ -160,7 +160,7 @@ $THEME->layouts = array(
 );
 
 $THEME->parents = array('clean', 'bootstrapbase');
-$THEME->parents_exclude_sheets = array('bootstrapbase' => array('moodle'),'clean' => array('custom'));
+$THEME->parents_exclude_sheets = array('bootstrapbase' => array('moodle'));
 
 $THEME->rendererfactory = 'theme_overridden_renderer_factory';
 $THEME->reset_all_caches = 'theme_morecandy_updatedcallback';

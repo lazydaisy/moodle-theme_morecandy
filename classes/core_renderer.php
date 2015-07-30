@@ -366,6 +366,8 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
         'chapter' => 'file',
         'docs' => 'question-sign',
         'generate' => 'gift',
+        'left' => 'arrow-left',
+        'tick' => 'check',
         'spacer' => 'spacer',
         'a/logout' => 'sign-out',
         'i/assignroles' => 'user',

@@ -188,4 +188,3 @@ function theme_morecandy_get_html_for_settings(renderer_base $output, moodle_pag
 
     return $return;
 }
-

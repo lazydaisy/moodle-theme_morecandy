@@ -1,53 +1,50 @@
-#page-site-index .carousel {
-    display: none;
-}
-#page-site-index.notloggedin .carousel {
+.carousel {
     position: relative;
     margin-bottom: 20px;
     line-height: 1;
     display: block;
 }
-#page-site-index.notloggedin .carousel-inner > .item {
+.carousel-inner > .item {
     position: relative;
     display: none;
     transition: 0.6s ease-in-out left;
 }
-#page-site-index.notloggedin .carousel-inner > .item > img,
-#page-site-index.notloggedin .carousel-inner > .item > a > img {
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
     display: block;
     line-height: 1;
 }
-#page-site-index.notloggedin .carousel-inner > .active,
-#page-site-index.notloggedin .carousel-inner > .next,
-#page-site-index.notloggedin .carousel-inner > .prev {
+.carousel-inner > .active,
+.carousel-inner > .next,
+.carousel-inner > .prev {
     display: block;
 }
-#page-site-index.notloggedin .carousel-inner > .active {
+.carousel-inner > .active {
     left: 0;
 }
-#page-site-index.notloggedin .carousel-inner > .next,
-#page-site-index.notloggedin .carousel-inner > .prev {
+.carousel-inner > .next,
+.carousel-inner > .prev {
     position: absolute;
     top: 0;
     width: 100%;
 }
-#page-site-index.notloggedin .carousel-inner > .next {
+.carousel-inner > .next {
     left: 100%;
 }
-#page-site-index.notloggedin .carousel-inner > .prev {
+.carousel-inner > .prev {
     left: -100%;
 }
-#page-site-index.notloggedin .carousel-inner > .next.left,
-#page-site-index.notloggedin .carousel-inner > .prev.right {
+.carousel-inner > .next.left,
+.carousel-inner > .prev.right {
     left: 0;
 }
-#page-site-index.notloggedin .carousel-inner > .active.left {
+.carousel-inner > .active.left {
     left: -100%;
 }
-#page-site-index.notloggedin .carousel-inner > .active.right {
+.carousel-inner > .active.right {
     left: 100%;
 }
-#page-site-index.notloggedin .carousel-control {
+.carousel-control {
     position: absolute;
     top: 40%;
     left: 15px;
@@ -64,17 +61,17 @@
     opacity: 0.5;
     border-radius: 50px;
 }
-#page-site-index.notloggedin .carousel-control.right {
+.carousel-control.right {
     right: 15px;
     left: auto;
 }
-#page-site-index.notloggedin .carousel-control:hover,
-#page-site-index.notloggedin .carousel-control:focus {
+.carousel-control:hover,
+.carousel-control:focus {
     color: #ffffff;
     text-decoration: none;
     opacity: 0.9;
 }
-#page-site-index.notloggedin .carousel-caption {
+.carousel-caption {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -84,18 +81,18 @@
     background: rgba(0, 0, 0, 0.75);
     font-family: 'Mistral';
 }
-#page-site-index.notloggedin .carousel-caption h4,
-#page-site-index.notloggedin .carousel-caption p {
+.carousel-caption h4,
+.carousel-caption p {
     line-height: 20px;
     color: #ffffff;
 }
-#page-site-index.notloggedin .carousel-caption h4 {
+.carousel-caption h4 {
     margin: 0 0 5px;
 }
-#page-site-index.notloggedin .carousel-caption p {
+.carousel-caption p {
     margin-bottom: 0;
 }
-#page-site-index.notloggedin .carousel-indicators {
+.carousel-indicators {
     list-style: none;
     margin: 0;
     position: absolute;
@@ -103,8 +100,8 @@
     top: 170px;
     z-index: 5;
 }
-#page-site-index.notloggedin .carousel-indicators ol li,
-#page-site-index.notloggedin .carousel-indicators ol li.active {
+.carousel-indicators ol li,
+.carousel-indicators ol li.active {
     border-radius: 10px;
     cursor: pointer;
     display: inline;

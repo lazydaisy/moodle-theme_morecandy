@@ -10,9 +10,9 @@ $hasbrandicon = (!empty($PAGE->theme->settings->brandicon));
 <div class="container-fluid">
 <?php
 if ( $hasbrandicon ) {
-    echo '<a class="brand" href="<' . $CFG->wwwroot. '"></a>';
+    echo '<a class="brand" href="' . $CFG->wwwroot. '"></a>';
 } else {
-    echo '<a class="brand" href="<' . $CFG->wwwroot. '>"><i class="fa fa-home"></i></a>';
+    echo '<a class="brand" href="' . $CFG->wwwroot. '"><i class="fa fa-home"></i></a>';
 } ?>
 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 <span class="icon-bar"></span>

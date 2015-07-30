@@ -25,13 +25,12 @@
 defined('MOODLE_INTERNAL') || die;
 
 
-$plugin->version   = 2015070800;
-$plugin->maturity  = 'MATURITY_STABLE';
-$plugin->release   = '1.00 (Build: 20150708)';
+$plugin->version   = 20150730; // Previously Morecandy 2.9.2
+$maturity = MATURITY_ALPHA; // This version's maturity level.
+$plugin->release  = '3.0 (Build: 20150730)'; // Human-friendly version name                    // This version's branch.
 $plugin->requires  = 2015050500;
 $plugin->component = 'theme_morecandy';
 $plugin->dependencies = array(
     'theme_bootstrapbase'  => 2015051100,
     'theme_clean'  => 2015051100,
 );
-

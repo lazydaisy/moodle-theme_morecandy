@@ -651,9 +651,23 @@ h6 {font-size: 100%;}
     }
 }
 
-#page-site-index .sitetopic {
-    min-height: 200px;
-    margin-bottom: 15px;
-    padding-top: 10px;
+#page-site-index {
+    .sitetopic {
+        min-height: 200px;
+        margin-bottom: 15px;
+        padding-top: 0;
+        .carousel-inner {
+            > .item {
+                > img {
+                    height: 200px;
+                }
+            }
+            > a {
+                > img {
+                    height: 200px;
+                }
+            }
+        }
+    }
 }
 
