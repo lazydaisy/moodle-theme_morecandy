@@ -79,51 +79,20 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
      * @return string HTML fragment.
      */
     public function standard_footer_html() {
-        global $CFG, $SCRIPT;
+        $output = parent::standard_footer_html();
+        $patterns = array();
+        $replacements = array();
 
-        // This function is normally called from a layout.php file in {@link core_renderer::header()}
-        // but some of the content will not be known until later, so we return a placeholder for now.
-        // This will be replaced with the real content in {@link core_renderer::footer()}.
-        $output = $this->unique_performance_info_token;
-        if ($this->page->devicetypeinuse == 'legacy') {
-            // The legacy theme is in use print the notification
-            $output .= html_writer::tag('div', get_string('legacythemeinuse'), array('class'=>'legacythemeinuse'));
-        }
-        // Get links to switch device types (only shown for users not on a default device)
-        $output .= $this->theme_switch_links();
+        $patterns[0] = '/<div class="performanceinfo pageinfo">/';
+        $replacements[0] = '<div class="performanceinfo pageinfo well"><i class="fa fa-cogs"></i>';
 
-        if (!empty($CFG->debugpageinfo)) {
-            $icon = 'fa fa-cogs';
-            $text = 'This page is ';
-            $itag = html_writer::tag('i', '', array('class' => $icon));
-            $output .= html_writer::tag('div', $itag . $text . $this->page->debug_summary(), array('class' => 'performanceinfo pageinfo well'));
-        }
-        if (debugging(null, DEBUG_DEVELOPER) and has_capability('moodle/site:config', context_system::instance())) {  // Only in developer mode
-            // Add link to profiling report if necessary
-            if (function_exists('profiling_is_running') && profiling_is_running()) {
-                $txt = get_string('profiledscript', 'admin');
-                $title = get_string('profiledscriptview', 'admin');
-                $url = $CFG->wwwroot . '/admin/tool/profiling/index.php?script=' . urlencode($SCRIPT);
-                $link = html_writer::link($url, $txt, array('title' => $title));
-                $output .= html_writer::tag('div', $link, array('class' => 'profilingfooter'));
-            }
-            $url = new moodle_url('/'.$CFG->admin.'/purgecaches.php?confirm=1&amp;sesskey='.sesskey());
-            $purgecaches = get_string('purgecaches', 'admin');
-            $output .= '<div class="btn btn-default">';
-            $output .= '<a href=" ' . $url . ' "><i class="fa fa-trash"></i> ' . $purgecaches . ' </a>';
-            $output .= '</div>';
-        }
-        if (!empty($CFG->debugvalidators)) {
-            // NOTE: this is not a nice hack, $PAGE->url is not always accurate and $FULLME neither, it is not a bug if it fails. --skodak
-            $output .= '<div class="validators"><ul>
-              <li><a class="btn btn-small btn-default" href="http://validator.w3.org/check?verbose=1&amp;ss=1&amp;uri=' . urlencode(qualified_me()) . '"><i class="fa fa-cogs"></i>&nbsp;&nbsp;Validate HTML</a></li>
-              <li><a class="btn btn-small btn-default" href="http://www.contentquality.com/mynewtester/cynthia.exe?rptmode=-1&amp;url1=' . urlencode(qualified_me()) . '"><i class="fa fa-cogs"></i>&nbsp;&nbsp;Section 508 Check</a></li>
-              <li><a class="btn btn-small btn-default" href="http://www.contentquality.com/mynewtester/cynthia.exe?rptmode=0&amp;warnp2n3e=1&amp;url1=' . urlencode(qualified_me()) . '"><i class="fa fa-cogs"></i>&nbsp;&nbsp;WCAG 1 (2,3) Check</a></li>
-            </ul><br /></div>';
-        }
-        if (!empty($CFG->additionalhtmlfooter)) {
-            $output .= "\n".$CFG->additionalhtmlfooter;
-        }
+        $patterns[1] = '/<div class="purgecaches">(<a[^>]+>)([^<]+)<\/a>/';
+        $replacements[1] = '<div class="btn btn-default">${1}<i class="fa fa-trash"></i> ${2} </a>';
+
+        $patterns[2] = '/<li><a([^>]+)>([^<]+)<\/a>/';
+        $replacements[2] = '<li><a class="btn btn-small btn-default"${1}><i class="fa fa-cogs"></i>&nbsp;&nbsp;${2}</a>';
+        $output = preg_replace($patterns, $replacements, $output);
+
         return $output;
     }
 
