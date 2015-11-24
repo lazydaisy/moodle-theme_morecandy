@@ -89,7 +89,7 @@ echo $OUTPUT->doctype() ?>
         </div>
         <?php echo $OUTPUT->blocks('side-post', $sidepost); ?>
     </div>
-
+</div>
     <footer id="page-footer">
         <div id="course-footer"><?php echo $OUTPUT->course_footer(); ?></div>
         <p class="helplink"><?php echo $OUTPUT->page_doc_link(); ?></p>
@@ -102,7 +102,5 @@ echo $OUTPUT->doctype() ?>
     </footer>
 
     <?php echo $OUTPUT->standard_end_of_body_html() ?>
-
-</div>
 </body>
 </html>

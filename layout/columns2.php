@@ -50,18 +50,7 @@ echo $OUTPUT->doctype() ?>
 <?php include('includes/banner.php'); ?>
 
 <div id="page" class="container-fluid">
-
-    <header id="page-header" class="clearfix">
-        <?php echo $OUTPUT->page_heading(); ?>
-
-        <div id="page-navbar" class="clearfix">
-            <nav class="breadcrumb-nav"><?php echo $OUTPUT->navbar(); ?></nav>
-            <div class="breadcrumb-button"><?php echo $OUTPUT->page_heading_button(); ?></div>
-        </div>
-        <div id="course-header">
-            <?php echo $OUTPUT->course_header(); ?>
-        </div>
-    </header>
+    <?php echo $OUTPUT->full_header(); ?>
 
     <div id="page-content" class="row-fluid">
         <div class="row-fluid">
@@ -72,25 +61,24 @@ echo $OUTPUT->doctype() ?>
                 echo $OUTPUT->course_content_footer();
                 ?>
             </section>
-
-        <?php echo $OUTPUT->blocks('side-pre', $sidepre);
-        ?>
+            <?php echo $OUTPUT->blocks('side-pre', $sidepre); ?>
+        </div>
     </div>
-    </div>
-
-    <footer id="page-footer">
-        <div id="course-footer"><?php echo $OUTPUT->course_footer(); ?></div>
-        <p class="helplink"><?php echo $OUTPUT->page_doc_link(); ?></p>
-        <?php
-        echo $html->footnote;
-        echo $OUTPUT->login_info();
-        echo $OUTPUT->home_link();
-        echo $OUTPUT->standard_footer_html();
-        ?>
-    </footer>
-
-    <?php echo $OUTPUT->standard_end_of_body_html() ?>
-
 </div>
+
+<footer id="page-footer">
+    <div id="course-footer"><?php echo $OUTPUT->course_footer(); ?></div>
+    <p class="helplink"><?php echo $OUTPUT->page_doc_link(); ?></p>
+    <?php
+    echo $html->footnote;
+    echo $OUTPUT->login_info();
+    echo $OUTPUT->home_link();
+    echo $OUTPUT->standard_footer_html();
+    ?>
+</footer>
+
+<?php echo $OUTPUT->standard_end_of_body_html() ?>
+
+
 </body>
 </html>
