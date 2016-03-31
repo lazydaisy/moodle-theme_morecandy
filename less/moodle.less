@@ -47,6 +47,25 @@
 .jsenabled .block.block_adminblock {
     background-color: @sidewayHeaderColor;
 }
+.editing {
+    .block {
+        .header {
+            .commands {
+                background-color: #eee;
+                border-color: @sidewayHeaderColor;;
+                border-style: dashed;
+                border-width: 1px 0;
+                width: auto;
+                margin: 0 15px;
+                text-align: center;
+            }
+        }
+    }
+}
+.section-modchooser-link {
+    font-size: 150%;
+    .btn;
+}
 
 /* End sidewayheadercolor
 -------------------------*/
@@ -154,7 +173,8 @@ h6 {font-size: 100%;}
         text-align: justify;
     }
 }
-#page-navbar {
+#page-course-view-topics #page-navbar,
+#page-course-view-weeks #page-navbar {
     .breadcrumb-button {
         position: fixed;
         right: 25px;
@@ -208,11 +228,15 @@ h6 {font-size: 100%;}
         }
     }
     .avatar {
-        display: block;
-        border-color: @sidewayHeaderColorHover;
-        border-style: solid;
-        border-width: 1px;
-        border-radius: 50% 50% 6%;
+        img {
+            .userpicture {
+                display: block;
+                border-color: @sidewayHeaderColorHover;
+                border-style: solid;
+                border-width: 1px;
+                border-radius: 50% 50% 6%;
+            }
+        }
     }
     li a {
         font-size: 16px;
@@ -548,16 +572,13 @@ h6 {font-size: 100%;}
 #page-site-index {
     #region-main {
         .sitetopic {
-            img.iconsmall {
-                background-image: linear-gradient(to bottom, @sidewayHeaderColor, @sidewayHeaderColorHover);
-                background-repeat: repeat-x;
-                border: 2px solid @sidewayHeaderColor;
-                color: #fff;
-                text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-                width: 20px;
-                height: 20px;
-                border-radius: 5px;
-                margin: 0 10px;
+            img {
+                height: 16px;
+                width: 16px;
+                &.iconsmall {
+                    .btn;
+                    padding: 4px;
+                }
             }
         }
     }
@@ -584,7 +605,6 @@ h6 {font-size: 100%;}
 }
 /* Frontpage Folly
 -------------------------*/
-
 #frontpage-category-names,
 #frontpage-category-combo,
 #frontpage-course-list {
@@ -597,6 +617,7 @@ h6 {font-size: 100%;}
         letter-spacing: 2px;
         text-transform: uppercase;
         color: @navbarLinkColor;
+        padding: 4px 5px;
         line-height: 24px;
         /* Abs positioning makes it not take up vert space */
         position: absolute;
@@ -652,7 +673,6 @@ h6 {font-size: 100%;}
 
 #page-site-index {
     .sitetopic {
-        min-height: 200px;
         margin-bottom: 15px;
         padding-top: 0;
         .carousel-inner {
@@ -669,6 +689,104 @@ h6 {font-size: 100%;}
         }
     }
 }
+
+.moodle-actionmenu.show[data-enhanced] .menu .iconsmall,
+.moodle-actionmenu.show[data-enhanced] .menu .smallicon {
+    margin: 4px;
+    padding: 4px;
+}
+.invisible {
+    background-color: rgba(123, 123, 123, 0.5);
+}
+
+.usermenu .moodle-actionmenu[data-enhanced] .menu .menu-action.icon:hover img {
+    background-color: @white;
+    border-radius: 50%;
+}
+
+#page-user-profile section.node_category,
+.course-content ul.topics li.section .content,
+#page-grade-report-overview-index #region-main .no-overflow {
+    position: relative;
+    border-color: @sidewayHeaderColor;
+    border-style: solid;
+    border-width: 1px 1px 1px 34px;
+    min-height: 200px;
+    background-color: @white;
+    h3 {
+        font: bold 12px Sans-Serif;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: @navbarLinkColor;
+        padding: 4px 5px;
+        line-height: 24px;
+        /* Abs positioning makes it not take up vert space */
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        /* Rotate from top left corner (not default) */
+
+        -webkit-transform-origin: 0 0;
+           -moz-transform-origin: 0 0;
+            -ms-transform-origin: 0 0;
+             -o-transform-origin: 0 0;
+                transform-origin: 0 0;
+
+        -webkit-transform: rotate(90deg);
+           -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+             -o-transform: rotate(90deg);
+                transform: rotate(90deg);
+    }
+}
+#page-user-preferences #region-main {
+    position: relative;
+    border-color: @sidewayHeaderColor;
+    border-style: solid;
+    border-width: 1px 1px 1px 34px;
+    min-height: 200px;
+    background-color: @white;
+        h2 {
+        font: bold 12px Sans-Serif;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: @navbarLinkColor;
+        padding: 4px 5px;
+        line-height: 24px;
+        /* Abs positioning makes it not take up vert space */
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        /* Rotate from top left corner (not default) */
+
+        -webkit-transform-origin: 0 0;
+           -moz-transform-origin: 0 0;
+            -ms-transform-origin: 0 0;
+             -o-transform-origin: 0 0;
+                transform-origin: 0 0;
+
+        -webkit-transform: rotate(90deg);
+           -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+             -o-transform: rotate(90deg);
+                transform: rotate(90deg);
+    }
+}
+#page-user-preferences #region-main .preferences-groups {
+    padding-left: 20px;
+}
+
+.path-course-view .course-content ul li.section {
+    padding: 60px;
+    margin: -60px;
+}
+
+#page-grade-report-overview-index #region-main .no-overflow {
+    overflow: visible;
+}
+
 /* Page Footer
 -----------------------------*/
 
