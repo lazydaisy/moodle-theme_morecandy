@@ -47,8 +47,11 @@ div.logo {height: 100px;} or whatever height in pixels the logo is.';
 
 $string['pluginname'] = 'Morecandy';
 
+$string['region-before'] = 'Before';
+$string['region-behind'] = 'Behind';
 $string['region-side-post'] = 'Right';
 $string['region-side-pre'] = 'Left';
+
 
 $string['sidewayheadercolor'] = 'Sideway header colour';
 $string['sidewayheadercolor_desc'] = 'This setting allows you to choose a colour to repace the default which is a shade of blue.';
@@ -63,3 +66,7 @@ $string['brandicondesc'] = 'This setting allows you to add a small \'Brand\' ico
 $string['welcome'] = 'Welcome back {$a}!';
 $string['welcomenote'] = 'Welcome note';
 $string['welcomenotedesc'] = 'Here you can add your own personal welcome note';
+
+$string['idnumbercourse'] = 'Credits';
+$string['idnumbercourse_help'] = 'The number of credits attributed to this course. Leave blank if not needed.';
+

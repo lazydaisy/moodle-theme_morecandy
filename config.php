@@ -24,7 +24,7 @@
  * http://docs.moodle.org/dev/Themes_2.0
  *
  * @package   theme_morecandy
- * @copyright 2015 byLazyDaisy.uk
+ * @copyright 2016 byLazyDaisy.uk
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -43,7 +43,7 @@ $THEME->editor_sheets = array();
 $THEME->enable_dock = true;
 $THEME->extralesscallback = 'theme_morecandy_extra_less';
 
-$THEME->javascripts_footer = array('interval');
+$THEME->javascripts_footer = array('morecandy', 'interval');
 
 $THEME->lessfile = 'moodle';
 $THEME->lessvariablescallback = 'theme_morecandy_less_variables';
@@ -92,17 +92,19 @@ $THEME->layouts = array(
     ),
     // My dashboard page.
     'mydashboard' => array(
-        'file' => 'columns3.php',
-        'regions' => array('side-pre', 'side-post'),
-        'defaultregion' => 'side-pre',
+        'file' => 'columns4.php',
+        'regions' => array('side-pre', 'before', 'behind', 'side-post'),
+        'defaultregion' => 'before',
         'options' => array('langmenu' => true),
     ),
     // My public page.
     'mypublic' => array(
-        'file' => 'columns3.php',
-        'regions' => array('side-pre', 'side-post'),
-        'defaultregion' => 'side-pre',
+        'file' => 'columns4.php',
+        'regions' => array('side-pre', 'before', 'behind', 'side-post'),
+        'defaultregion' => 'before',
+        'options' => array('langmenu' => true),
     ),
+    // Login page.
     'login' => array(
         'file' => 'columns1.php',
         'regions' => array(),
@@ -159,7 +161,7 @@ $THEME->layouts = array(
     ),
 );
 
-$THEME->parents = array('clean', 'bootstrapbase');
+$THEME->parents = array('bootstrapbase');
 $THEME->parents_exclude_sheets = array('bootstrapbase' => array('moodle'));
 
 $THEME->rendererfactory = 'theme_overridden_renderer_factory';

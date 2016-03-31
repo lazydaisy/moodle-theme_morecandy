@@ -54,8 +54,8 @@
 
 .jsenabled .block.hidden .header h2,
 .jsenabled .block.block_adminblock .header h2 {
-    padding: 5px 10px;
-    margin: 0 0 10px 0;
+    padding: 10px;
+    margin: 0;
     line-height: 24px;
     font: bold 12px Sans-Serif;
     letter-spacing: 2px;

@@ -27,18 +27,23 @@
  * @copyright 2015 byLazyDaisy.uk
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-// Get the HTML for the various settings.
+
+// Get the HTML for the settings bits.
 $html = theme_morecandy_get_html_for_settings($OUTPUT, $PAGE);
 
 // Set default (LTR) layout mark-up for a three column page.
 $regionmainbox = 'span9';
 $regionmain = 'span8 pull-right';
+$before = 'span6 desktop-first-column';
+$behind = 'span6  pull-right';
 $sidepre = 'span4 desktop-first-column';
 $sidepost = 'span3 pull-right';
 // Reset layout mark-up for RTL languages.
 if (right_to_left()) {
     $regionmainbox = 'span9 pull-right';
     $regionmain = 'span8';
+    $before = 'span6 pull-right';
+    $behind = 'span6 desktop-first-column';
     $sidepre = 'span4 pull-right';
     $sidepost = 'span3 desktop-first-column';
 }
@@ -59,35 +64,27 @@ echo $OUTPUT->doctype() ?>
 <?php require('includes/banner.php'); ?>
 
 <div id="page" class="container-fluid">
-<div id="page-header" class="clearfix">
-    <div class="row-fluid">
-    <?php echo $html->heading; ?>
-    <?php echo $html->welcomenote; ?>
-    </div>
 
-    <div id="page-navbar" class="clearfix">
-        <nav class="breadcrumb-nav"><?php echo $OUTPUT->navbar(); ?></nav>
-        <div class="breadcrumb-button"><?php echo $OUTPUT->page_heading_button(); ?></div>
-    </div>
-<div id="course-header">
-    <?php echo $OUTPUT->course_header(); ?>
-</div>
-</div>
-    <div id="page-content" class="row-fluid">
-        <div id="region-main-box" class="<?php echo $regionmainbox; ?>">
+<div id="page-content" class="row-fluid">
+    <div id="region-main-box" class="<?php echo $regionmainbox; ?>">
+        <div class="row-fluid">
+            <section id="region-main" class="<?php echo $regionmain; ?>">
+                <?php
+                echo $OUTPUT->full_header();
+                echo $OUTPUT->course_content_header();
+                echo $OUTPUT->main_content();
+                echo $OUTPUT->course_content_footer();
+                ?>
             <div class="row-fluid">
-                <section id="region-main" class="<?php echo $regionmain; ?>">
-                    <?php
-                    echo $OUTPUT->course_content_header();
-                    echo $OUTPUT->main_content();
-                    echo $OUTPUT->course_content_footer();
-                    ?>
-                </section>
-                <?php echo $OUTPUT->blocks('side-pre', $sidepre); ?>
+            <?php echo $OUTPUT->blocks('before', $before); ?>
+            <?php echo $OUTPUT->blocks('behind', $behind); ?>
             </div>
+             </section>
+            <?php echo $OUTPUT->blocks('side-pre', $sidepre); ?>
         </div>
-        <?php echo $OUTPUT->blocks('side-post', $sidepost); ?>
     </div>
+    <?php echo $OUTPUT->blocks('side-post', $sidepost); ?>
+</div>
 
     <footer id="page-footer">
         <div id="course-footer"><?php echo $OUTPUT->course_footer(); ?></div>

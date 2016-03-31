@@ -22,7 +22,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once($CFG->dirroot. '/theme/bootstrapbase/renderers.php');
+include_once ($CFG->dirroot. '/theme/bootstrapbase/renderers.php');
 
 class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
 
@@ -49,7 +49,7 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
         }
 
         if ($addlangmenu) {
-            $strlang = get_string('language');
+            $strlang =  get_string('language');
             $currentlang = current_language();
             if (isset($langs[$currentlang])) {
                 $currentlang = $langs[$currentlang];
@@ -105,25 +105,22 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
         global $CFG, $SITE;
 
         if ($this->page->pagetype == 'site-index') {
-            // Special case for site home page - please do not remove.
+            // Special case for site home page - please do not remove
             return '';
 
         } else if (!empty($CFG->target_release) && $CFG->target_release != $CFG->release) {
             // Special case for during install/upgrade.
             return '<div class="sitelink">'.
-                   '<a title="Moodle" href="http://docs.moodle.org/en/Administrator_documentation"
-                   onclick="this.target=\'_blank\'">' . '<img style="width:100px;height:30px" src="' .
-                   $this->pix_url('moodlelogo') . '" alt="moodlelogo" /></a></div>';
+                   '<a title="Moodle" href="http://docs.moodle.org/en/Administrator_documentation" onclick="this.target=\'_blank\'">' .
+                   '<img style="width:100px;height:30px" src="' . $this->pix_url('moodlelogo') . '" alt="moodlelogo" /></a></div>';
 
         } else if ($this->page->course->id == $SITE->id || strpos($this->page->pagetype, 'course-view') === 0) {
-            return '<div class="homelink"><a class="btn btn-small" href="' .
-            $CFG->wwwroot . '/"><i class="icon-home"></i>&nbsp;&nbsp;' .  get_string('home') . '</a></div>';
+            return '<div class="homelink"><a class="btn btn-small" href="' . $CFG->wwwroot . '/"><i class="icon-home"></i>&nbsp;&nbsp;' .
+                    get_string('home') . '</a></div>';
 
         } else {
-            return '<div class="homelink"><a class="btn btn-small" href="' .
-            $CFG->wwwroot . '/course/view.php?id=' . $this->page->course->id .
-            '"><i class="icon-home"></i>&nbsp;&nbsp;' . format_string($this->page->course->shortname,
-            true, array('context' => $this->page->context)) . '</a></div>';
+            return '<div class="homelink"><a class="btn btn-small" href="' . $CFG->wwwroot . '/course/view.php?id=' . $this->page->course->id . '"><i class="icon-home"></i>&nbsp;&nbsp;' .
+                    format_string($this->page->course->shortname, true, array('context' => $this->page->context)) . '</a></div>';
         }
     }
 
@@ -152,10 +149,9 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
             $realuser = session_get_realuser();
             $fullname = fullname($realuser, true);
             if ($withlinks) {
-                $realuserinfo = ' [<a href=" ' . $CFG->wwwroot . ' /course/loginas.php?id= ' .
-                $course->id . '&amp;sesskey=' . sesskey() . ' "> ' . $fullname . ' </a>] ';
+                $realuserinfo = " [<a href=\"$CFG->wwwroot/course/loginas.php?id=$course->id&amp;sesskey=".sesskey()."\">$fullname</a>] ";
             } else {
-                $realuserinfo = ' [$fullname] ';
+                $realuserinfo = " [$fullname] ";
             }
         } else {
             $realuserinfo = '';
@@ -164,54 +160,49 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
         $loginurl = get_login_url();
 
         if (empty($course->id)) {
-            // The $course->id is not defined during installation.
+            // $course->id is not defined during installation
             return '';
         } else if (isloggedin()) {
             $context = context_course::instance($course->id);
 
             $fullname = fullname($USER, true);
-            // Since Moodle 2.0 this link always goes to the public profile page (not the course profile page).
+            // Since Moodle 2.0 this link always goes to the public profile page (not the course profile page)
             if ($withlinks) {
                 $username = "<a href=\"$CFG->wwwroot/user/profile.php?id=$USER->id\">$fullname</a>";
             } else {
                 $username = $fullname;
             }
-            if (is_mnet_remote_user($USER) and $idprovider = $DB->get_record('mnet_host', array('id' => $USER->mnethostid))) {
+            if (is_mnet_remote_user($USER) and $idprovider = $DB->get_record('mnet_host', array('id'=>$USER->mnethostid))) {
                 if ($withlinks) {
-                    $username .= ' from <a href="{$idprovider->wwwroot}">{$idprovider->name}</a>';
+                    $username .= " from <a href=\"{$idprovider->wwwroot}\">{$idprovider->name}</a>";
                 } else {
-                    $username .= ' from {$idprovider->name}';
+                    $username .= " from {$idprovider->name}";
                 }
             }
             if (isguestuser()) {
                 $loggedinas = $realuserinfo.get_string('loggedinasguest');
                 if (!$loginpage && $withlinks) {
-                    $loggedinas .= '<a class="btn btn-small btn-default" href="' .
-                    $loginurl . '"><i class="fa fa-sign-in"></i> ' . get_string('login') . '</a>';
+                    $loggedinas .= '<a class="btn btn-small btn-default" href="' . $loginurl . '"><i class="fa fa-sign-in"></i> ' . get_string('login') . '</a>';
                 }
-            } else if (is_role_switched($course->id)) { // Has switched roles.
+            } else if (is_role_switched($course->id)) { // Has switched roles
                 $rolename = '';
-                if ($role = $DB->get_record('role', array('id' => $USER->access['rsw'][$context->path]))) {
+                if ($role = $DB->get_record('role', array('id'=>$USER->access['rsw'][$context->path]))) {
                     $rolename = ': '.format_string($role->name);
                 }
                 $loggedinas = get_string('loggedinas', 'moodle', $username).$rolename;
                 if ($withlinks) {
-                    $loggedinas .= ' (<a href=" ' . $CFG->wwwroot . ' /course/view.php?id= ' .
-                    $course->id . ' &amp;switchrole=0&amp;sesskey= ' . sesskey() . '">' . get_string('switchrolereturn') . '</a>)';
+                    $loggedinas .= ' (<a href="$CFG->wwwroot/course/view.php?id=$course->id&amp;switchrole=0&amp;sesskey='.sesskey().'">' . get_string('switchrolereturn') . '</a>)';
                 }
             } else {
                 $loggedinas = $realuserinfo.get_string('loggedinas', 'moodle', $username);
                 if ($withlinks) {
-                    $loggedinas .= ' &nbsp;&nbsp;<a class="btn btn-small" href="' .
-                    $CFG->wwwroot . ' /login/logout.php?sesskey= ' . sesskey() .
-                    '"><i class="fa fa-sign-out"></i> ' . get_string('logout') . '</a>';
+                    $loggedinas .= '&nbsp;&nbsp;<a class="btn btn-small" href="' . $CFG->wwwroot . '/login/logout.php?sesskey=' . sesskey() . '"><i class="fa fa-sign-out"></i> ' . get_string('logout') . '</a>';
                 }
             }
         } else {
             $loggedinas = get_string('loggedinnot', 'moodle');
             if (!$loginpage && $withlinks) {
-                $loggedinas . = ' <a class="btn btn-small btn-default" href="' .
-                $loginurl . '"><i class="fa fa-sign-in"></i> '.get_string('login').'</a>';
+                $loggedinas .= ' <a class="btn btn-small btn-default" href="' . $loginurl . '"><i class="fa fa-sign-in"></i> '.get_string('login').'</a>';
             }
         }
 
@@ -228,11 +219,9 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
                         $a = new stdClass();
                         $a->attempts = $count;
                         $loggedinas .= get_string('failedloginattempts', '', $a);
-                        if (file_exists($CFG->dirroot . '/report/log/index.php ' .
-                        ) and has_capability(. ' report/log:view ',
-                        context_system::instance())) {
-                            $loggedinas .= ' ('. html_writer::link(new moodle_url('/report/log/index.php',
-                            array('chooselog' => 1, 'id' => 0 , 'modid' => 'site_errors')), get_string('logs')).')';
+                        if (file_exists("$CFG->dirroot/report/log/index.php") and has_capability('report/log:view', context_system::instance())) {
+                            $loggedinas .= ' ('.html_writer::link(new moodle_url('/report/log/index.php', array('chooselog' => 1,
+                                    'id' => 0 , 'modid' => 'site_errors')), get_string('logs')).')';
                         }
                         $loggedinas .= '</div>';
                     }
@@ -264,12 +253,22 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
         }
 
         $content = '';
-        $content .= html_writer::link($url,
-                    html_writer::tag('i', '', array('class' => 'course-edit-icon fa '. $icon . ' fa-2x')),
-                    array('href' => $url, 'title' => $alt, 'alt' => $alt));
+        $content .=  html_writer::link($url,
+                                  html_writer::tag('i', '', array('class' => 'course-edit-icon fa '. $icon . ' fa-2x')),
+                                  array('href' => $url, 'title' => $alt, 'alt' => $alt));
 
         return $content;
 
+   }
+
+    /**
+     * Renders a primary action_menu_filler item.
+     *
+     * @param action_menu_link_filler $action
+     * @return string HTML fragment
+     */
+    function render_action_menu_filler(action_menu_filler $action) {
+        return html_writer::tag('li', '', array('class' => 'divider'));
     }
 
 }

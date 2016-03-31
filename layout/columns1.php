@@ -18,7 +18,7 @@
  * The one column layout.
  *
  * @package   theme_morecandy
- * @copyright 2015 byLazyDaisy.uk
+ * @copyright 2016 byLazyDaisy.uk
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -38,9 +38,10 @@ echo $OUTPUT->doctype() ?>
 
 <?php echo $OUTPUT->standard_top_of_body_html() ?>
 
-<?php include('includes/banner.php'); ?>
+<?php require('includes/banner.php'); ?>
 
 <div id="page" class="container-fluid">
+
     <?php echo $OUTPUT->full_header(); ?>
 
     <div id="page-content" class="row-fluid">
@@ -52,21 +53,20 @@ echo $OUTPUT->doctype() ?>
             ?>
         </section>
     </div>
+
+    <footer id="page-footer">
+        <div id="course-footer"><?php echo $OUTPUT->course_footer(); ?></div>
+        <p class="helplink"><?php echo $OUTPUT->page_doc_link(); ?></p>
+        <?php
+        echo $html->footnote;
+        echo $OUTPUT->login_info();
+        echo $OUTPUT->home_link();
+        echo $OUTPUT->standard_footer_html();
+        ?>
+    </footer>
+
+    <?php echo $OUTPUT->standard_end_of_body_html() ?>
+
 </div>
-
-<footer id="page-footer">
-    <div id="course-footer"><?php echo $OUTPUT->course_footer(); ?></div>
-    <p class="helplink"><?php echo $OUTPUT->page_doc_link(); ?></p>
-    <?php
-    echo $html->footnote;
-    echo $OUTPUT->login_info();
-    echo $OUTPUT->home_link();
-    echo $OUTPUT->standard_footer_html();
-    ?>
-</footer>
-
-<?php echo $OUTPUT->standard_end_of_body_html() ?>
-
-
 </body>
 </html>

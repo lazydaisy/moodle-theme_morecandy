@@ -4273,7 +4273,7 @@ span.editinstructions {
   margin: 5px;
 }
 .coursebox > .info > .coursename {
-  margin: 5px;
+  margin: 5px 0 5px 15px;
   padding: 0;
 }
 .coursebox .content .teachers li {
