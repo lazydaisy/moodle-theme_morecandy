@@ -13,9 +13,6 @@
 @navbarDividerDarker:               darken(@sidewayHeaderColor, 25%);
 @navbarDividerLighter:              @sidewayHeaderColorHover;
 @navbarLinkColorHover:              @sidewayHeaderColorHover;
-@btnPrimaryBackground:              @sidewayHeaderColor;
-@btnPrimaryBackgroundHighlight:     @sidewayHeaderColorHover;
-
 @hrBorder:                          @tableBackgroundAccent;
 
 @formActionsBackground:             @wellBackground;
@@ -303,14 +300,15 @@ h6 {font-size: 100%;}
         color: @navbarLinkColor;
         text-shadow: none;
         &:hover {
-            color: @sidewayHeaderColorHover;
+            background-color: @sidewayHeaderColorHover;
+            color: @white;
         }
     }
     .nav > li > a {
         &:hover,
         &:focus {
-            background-color: @navbarLinkBackgroundHover; // "transparent" is default to differentiate :hover/:focus from .active
-            color: @navbarLinkColorHover;
+            background-color: @sidewayHeaderColorHover; // "transparent" is default to differentiate :hover/:focus from .active
+            color: @white;
             text-decoration: none;
         }
     }
@@ -784,4 +782,44 @@ h6 {font-size: 100%;}
 
 #page-grade-report-overview-index #region-main .no-overflow {
     overflow: visible;
+}
+
+/** Header-bar styles **/
+.pagelayout-mydashboard .page-context-header,
+.pagelayout-mypublic .page-context-header {
+    height: 100px;
+    width: 100%;
+    overflow: visible;
+    border: 1px solid @sidewayHeaderColor;
+    border-radius: 3px;
+    margin-bottom: 1em;
+}
+.page-context-header .page-header-image,
+.page-context-header .page-header-headings {
+    display: block;
+    position: relative;
+}
+.page-context-header .page-header-image {
+    margin: 0;
+    height: 100px;
+    width: 100px;
+}
+.page-context-header .page-header-headings {
+    margin: 10px 0;
+}
+.page-context-header .page-header-headings h1 {
+    line-height: 1;
+}
+.page-context-header .page-header-headings,
+.page-context-header .header-button-group {
+    position: relative;
+    line-height: 1;
+    vertical-align: middle;
+}
+.page-context-header .header-button-group {
+    display: block;
+}
+.page-context-header .header-button-group a {
+    position: relative;
+    top: 0;
 }
