@@ -18,7 +18,7 @@
  * Theme Morecandy version file.
  *
  * @package    theme_morecandy
- * @copyright  2015 byLazyDaisy.uk
+ * @copyright  2016 byLazyDaisy.uk
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -29,8 +29,7 @@ $plugin->component    = 'theme_morecandy';
 $plugin->maturity     = MATURITY_ALPHA; // This version's maturity level.
 $plugin->release      = '3.1 (Build: 2016)'; // Human-friendly version name                    // This version's branch.
 $plugin->requires     = 2016032400;
-$plugin->version      = 2016033100; // Previously Morecandy 3.0.
-
+$plugin->version      = 2016040100; // Latest build date. YYYY/MM/DD/00
 $plugin->dependencies = array(
     'theme_bootstrapbase'  => 2015111600,
 );
