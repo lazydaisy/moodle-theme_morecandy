@@ -18,7 +18,7 @@
  * Theme Morecandy upgrade.
  *
  * @package    theme_morecandy
- * @copyright  2015 LazyDaisy.uk
+ * @copyright  2016 LazyDaisy.uk
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

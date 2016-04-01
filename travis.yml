@@ -10,14 +10,14 @@ cache:
 
 php:
  # Only run the lowest and highest supported versions to reduce the load on travis-ci.org.
- - 5.4
+  - 5.4
  # - 5.5
  # - 5.6
- - 7.0
+  - 7.0
 
 matrix:
  allow_failures:
- - php: 7.0
+  - php: 7.0
 
 env:
  global:
@@ -48,5 +48,3 @@ script:
   - moodle-plugin-ci csslint
   - moodle-plugin-ci jshint
   - moodle-plugin-ci phpunit
-
-
