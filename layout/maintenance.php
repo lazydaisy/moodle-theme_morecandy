@@ -22,9 +22,6 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-// Get the HTML for the settings bits.
-$html = theme_clean_get_html_for_settings($OUTPUT, $PAGE);
-
 echo $OUTPUT->doctype() ?>
 <html <?php echo $OUTPUT->htmlattributes(); ?>>
 <head>
@@ -41,7 +38,7 @@ echo $OUTPUT->doctype() ?>
 <div id="page" class="container-fluid">
 
     <header id="page-header" class="clearfix">
-        <?php echo $html->heading; ?>
+        <?php echo $PAGE->heading ?>
     </header>
 
     <div id="page-content" class="row-fluid">
