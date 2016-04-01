@@ -32,7 +32,7 @@ defined('MOODLE_INTERNAL') || die;
 
 if ($ADMIN->fulltree) {
 
-    // @sidewayHeaderColor setting.
+    // Variable @sidewayHeaderColor setting...
     $name = 'theme_morecandy/sidewayheadercolor';
     $title = get_string('sidewayheadercolor', 'theme_morecandy');
     $description = get_string('sidewayheadercolor_desc', 'theme_morecandy');
@@ -41,32 +41,32 @@ if ($ADMIN->fulltree) {
     $setting->set_updatedcallback('theme_reset_all_caches');
     $settings->add($setting);
 
-    // Brand icon.
+    // Brand icon setting...
     $name = 'theme_morecandy/brandicon';
-    $title = get_string('brandicon','theme_morecandy');
+    $title = get_string('brandicon', 'theme_morecandy');
     $description = get_string('brandicondesc', 'theme_morecandy');
     $setting = new admin_setting_configstoredfile($name, $title, $description, 'brandicon');
     $setting->set_updatedcallback('theme_reset_all_caches');
     $settings->add($setting);
 
-    // Welcome note setting
+    // Welcome note setting...
     $name = 'theme_morecandy/welcomenote';
-    $title = get_string('welcomenote','theme_morecandy');
+    $title = get_string('welcomenote', 'theme_morecandy');
     $description = get_string('welcomenotedesc', 'theme_morecandy');
     $default = '';
     $setting = new admin_setting_confightmleditor($name, $title, $description, $default);
     $setting->set_updatedcallback('theme_reset_all_caches');
     $settings->add($setting);
 
-    // Logo file setting.
+    // Logo file uploader setting...
     $name = 'theme_morecandy/logo';
-    $title = get_string('logo','theme_morecandy');
+    $title = get_string('logo', 'theme_morecandy');
     $description = get_string('logodesc', 'theme_morecandy');
     $setting = new admin_setting_configstoredfile($name, $title, $description, 'logo');
     $setting->set_updatedcallback('theme_reset_all_caches');
     $settings->add($setting);
 
-    // Custom CSS file.
+    // Custom CSS text area setting...
     $name = 'theme_morecandy/customcss';
     $title = get_string('customcss', 'theme_morecandy');
     $description = get_string('customcssdesc', 'theme_morecandy');
@@ -75,7 +75,7 @@ if ($ADMIN->fulltree) {
     $setting->set_updatedcallback('theme_reset_all_caches');
     $settings->add($setting);
 
-    // Footnote setting.
+    // Footnote setting...
     $name = 'theme_morecandy/footnote';
     $title = get_string('footnote', 'theme_morecandy');
     $description = get_string('footnotedesc', 'theme_morecandy');

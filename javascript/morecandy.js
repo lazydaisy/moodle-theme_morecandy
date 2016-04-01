@@ -1,5 +1,5 @@
 /* ================================================================
- * Copyright 2015 Gareth Barnard (@link: http://about.me/gjbarnard)
+ * Copyright 2016 Gareth Barnard (@link: http://about.me/gjbarnard)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,11 +17,11 @@
 require(['core/first'], function() {
     require(['jquery', 'theme_bootstrapbase/bootstrap', 'core/log'],
     function($, bootstrap, log) {
-		log.debug('Theme JavaScript initialised');
-		$(document).ready(function(){
-			$('.carousel').carousel({
-				interval: 3000
-			});
-		});
+        log.debug('Theme JavaScript initialised');
+        $(document).ready(function(){
+            $('.carousel').carousel({
+                interval: 3000
+            });
+        });
     });
 });

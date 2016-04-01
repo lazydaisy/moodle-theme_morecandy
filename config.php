@@ -48,7 +48,7 @@ $THEME->lessvariablescallback = 'theme_morecandy_less_variables';
 $THEME->extralesscallback = 'theme_morecandy_extra_less';
 
 $THEME->enable_dock = true;
-$THEME->javascripts_footer = array('morecandy', 'interval');
+$THEME->javascripts_footer = array('morecandy');
 
 
 
