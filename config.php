@@ -30,23 +30,28 @@
 
 $THEME->name = 'morecandy';
 
-/////////////////////////////////
-// The only thing you need to change in this file when copying it to
-// create a new theme is the name above. You also need to change the name
-// in version.php and lang/en/theme_cle.php as well.
-//////////////////////////////////
-//
+$THEME->parents = array('bootstrapbase');
+$THEME->parents_exclude_sheets = array('bootstrapbase' => array('moodle'));
 
-$THEME->csspostprocess = 'theme_morecandy_process_css';
+$THEME->rendererfactory = 'theme_overridden_renderer_factory';
+$THEME->reset_all_caches = 'theme_morecandy_updatedcallback';
 
 $THEME->editor_sheets = array();
-$THEME->enable_dock = true;
-$THEME->extralesscallback = 'theme_morecandy_extra_less';
+$THEME->sheets = array('glyphicon-font', 'font-awesome', 'carousel', 'sideway-header', 'rtl', 'custom');
+$THEME->supportscssoptimisation = false;
 
-$THEME->javascripts_footer = array('morecandy', 'interval');
+$THEME->csspostprocess = 'theme_morecandy_process_css';
+$THEME->yuicssmodules = array();
 
 $THEME->lessfile = 'moodle';
 $THEME->lessvariablescallback = 'theme_morecandy_less_variables';
+$THEME->extralesscallback = 'theme_morecandy_extra_less';
+
+$THEME->enable_dock = true;
+$THEME->javascripts_footer = array('morecandy', 'interval');
+
+
+
 $THEME->layouts = array(
     // Most backwards compatible layout without the blocks - this is the layout used by default.
     'base' => array(
@@ -157,17 +162,7 @@ $THEME->layouts = array(
         'file' => 'secure.php',
         'regions' => array('side-pre', 'side-post'),
         'defaultregion' => 'side-pre',
-        'options' => array('nofooter'=>true, 'nonavbar'=>true, 'nocustommenu'=>true, 'nologinlinks'=>true, 'nocourseheaderfooter'=>true),
+        'options' => array('nofooter' => true, 'nonavbar' => true, 'nocustommenu' => true,
+                           'nologinlinks' => true, 'nocourseheaderfooter' => true),
     ),
 );
-
-$THEME->parents = array('bootstrapbase');
-$THEME->parents_exclude_sheets = array('bootstrapbase' => array('moodle'));
-
-$THEME->rendererfactory = 'theme_overridden_renderer_factory';
-$THEME->reset_all_caches = 'theme_morecandy_updatedcallback';
-
-$THEME->sheets = array('glyphicon-font', 'font-awesome', 'carousel', 'sideway-header', 'rtl', 'custom');
-$THEME->supportscssoptimisation = false;
-
-$THEME->yuicssmodules = array();

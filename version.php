@@ -26,10 +26,10 @@ defined('MOODLE_INTERNAL') || die;
 
 
 $plugin->component    = 'theme_morecandy';
-$plugin->maturity     = MATURITY_ALPHA; // This version's maturity level.
-$plugin->release      = '3.1 (Build: 2016)'; // Human-friendly version name                    // This version's branch.
-$plugin->requires     = 2016032400;
-$plugin->version      = 2016040100; // Latest build date. YYYY/MM/DD/00
-$plugin->dependencies = array(
+$plugin->maturity     = MATURITY_ALPHA;      // This version's maturity level.
+$plugin->release      = '3.1 (Build: 2016)'; // Human-friendly version name.
+$plugin->requires     = 2016032400;          // This version of Moodle.
+$plugin->version      = 20160401;            // Latest build date. YYYYMMDD.
+$plugin->dependencies = array(               // The version of the parent theme.
     'theme_bootstrapbase'  => 2015111600,
 );
