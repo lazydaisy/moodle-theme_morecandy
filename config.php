@@ -37,7 +37,7 @@ $THEME->rendererfactory = 'theme_overridden_renderer_factory';
 $THEME->reset_all_caches = 'theme_morecandy_updatedcallback';
 
 $THEME->editor_sheets = array();
-$THEME->sheets = array('glyphicon-font', 'font-awesome', 'carousel', 'sideway-header', 'rtl', 'custom');
+$THEME->sheets = array('glyphicon-font', 'font-awesome', 'carousel', 'sideway-header', 'rtl', 'custom', 'settings');
 $THEME->supportscssoptimisation = false;
 
 $THEME->csspostprocess = 'theme_morecandy_process_css';
