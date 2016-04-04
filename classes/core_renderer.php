@@ -68,11 +68,11 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
         $patterns[0] = '/<div class="performanceinfo pageinfo">/';
         $replacements[0] = '<div class="performanceinfo pageinfo well"><i class="fa fa-cogs"></i>';
 
-        $patterns[1] = '/<div class="purgecaches">(<a[^>]+>)([^<]+)<\/a>/';
-        $replacements[1] = '<div class="purgecaches btn btn-default">${1}<i class="fa fa-trash"></i> ${2} </a>';
+        $patterns[1] = '/<div class="purgecaches"><a([^>]+)>([^<]+)<\/a>/';
+        $replacements[1] = '<div class="purgecaches"><a class="btn btn-default" ${1}><i class="fa fa-trash"></i>${2}</a>';
 
         $patterns[2] = '/<li><a([^>]+)>([^<]+)<\/a>/';
-        $replacements[2] = '<li><a class="btn btn-small btn-default">${1}<i class="fa fa-cogs"></i>${2}</a>';
+        $replacements[2] = '<li><a class="btn btn-small btn-default" ${1}><i class="fa fa-cogs">${2}</i></a>';
         $output = preg_replace($patterns, $replacements, $output);
 
         return $output;
