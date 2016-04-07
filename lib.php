@@ -188,3 +188,10 @@ function theme_morecandy_get_html_for_settings(renderer_base $output, moodle_pag
 
     return $return;
 }
+
+/**
+ * Allows Morecandy theme to access jQuery file in Moodle core.
+ */
+function theme_morecandy_page_init(moodle_page $page) {
+    $page->requires->jquery();
+}
