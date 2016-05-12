@@ -53,6 +53,6 @@ $hascustommenu = (empty($PAGE->layout_options['nocustommenu']) && !empty($custom
 
     </div>
     </nav>
-</div>
+</div><?php
 
-<?php echo $html->banner; ?>
+echo $html->banner;

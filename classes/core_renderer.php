@@ -262,11 +262,10 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
                         'role' => 'presentation'
                     ));
                 }
-            $html .= html_writer::end_div();
-        }
-
+                $html .= html_writer::end_div();
+            }
             $html .= html_writer::link($button['url'], html_writer::tag('span', $image), $button['linkattributes']);
-}
+        }
         $html .= html_writer::end_div();
 
         return $html;
