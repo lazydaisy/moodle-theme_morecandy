@@ -1,8 +1,8 @@
 /* Custom CSS
 -------------------------*/
-div.logo {
-    background-image: url([[setting:logo]]);
-    background-position: center;
+.pagelayout-frontpage.has-banner-image #banner {
+    background-image: url([[setting:banner]]);
+    background-position: center top;
     background-repeat: no-repeat;
     display: block;
     float: none;
@@ -11,10 +11,27 @@ div.logo {
     width: 100%;
     height: 200px;
 }
+
+#logo {
+    background-image: url([[setting:logo]]);
+    background-repeat: no-repeat;
+    display: block;
+    float: left;
+    height: 75px;
+    margin: 0 0 20px;
+    padding: 0;
+}
+
+dir-rtl #logo {
+    background-position: 100% 0;
+    display: block;
+    float: right;
+}
 a.brand {
     background-image: url([[setting:brandicon]]);
-    background-position: center;
+    background-position: 50% 50%;
     background-repeat: no-repeat;
     display: block;
     height: 20px;
+    padding: 10px 20px;
 }

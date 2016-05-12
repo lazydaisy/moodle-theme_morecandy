@@ -35,9 +35,12 @@ $html = theme_morecandy_get_html_for_settings($OUTPUT, $PAGE);
 $regionmainbox = 'span9';
 $regionmain = 'span8 pull-right';
 $before = 'span6 desktop-first-column';
-$behind = 'span6  pull-right';
+$behind = 'span6 pull-right';
 $sidepre = 'span4 desktop-first-column';
 $sidepost = 'span3 pull-right';
+$contextheaderleft = $before;
+$contextheaderright = $behind;
+
 // Reset layout mark-up for RTL languages.
 if (right_to_left()) {
     $regionmainbox = 'span9 pull-right';
@@ -46,6 +49,8 @@ if (right_to_left()) {
     $behind = 'span6 desktop-first-column';
     $sidepre = 'span4 pull-right';
     $sidepost = 'span3 desktop-first-column';
+    $contextheaderleft = $behind;
+    $contextheaderright = $before;
 }
 
 echo $OUTPUT->doctype() ?>
@@ -67,38 +72,34 @@ echo $OUTPUT->doctype() ?>
 
 <div id="page-content" class="row-fluid">
     <div id="region-main-box" class="<?php echo $regionmainbox; ?>">
-        <div class="row-fluid">
-            <section id="region-main" class="<?php echo $regionmain; ?>">
-                <?php
-                echo $OUTPUT->full_header();
+    <div class="row-fluid">
+        <div id="region-main" class="<?php echo $regionmain; ?>">
+            <div class="row-fluid" ><?php
+                echo $OUTPUT->full_header(); ?>
+            </div><?php
                 echo $OUTPUT->course_content_header();
                 echo $OUTPUT->main_content();
-                echo $OUTPUT->course_content_footer();
-                ?>
-            <div class="row-fluid">
-            <?php echo $OUTPUT->blocks('before', $before); ?>
-            <?php echo $OUTPUT->blocks('behind', $behind); ?>
-            </div>
-             </section>
-            <?php echo $OUTPUT->blocks('side-pre', $sidepre); ?>
-        </div>
-    </div>
-    <?php echo $OUTPUT->blocks('side-post', $sidepost); ?>
-</div>
+                echo $OUTPUT->course_content_footer(); ?>
 
-    <footer id="page-footer">
-        <div id="course-footer"><?php echo $OUTPUT->course_footer(); ?></div>
-        <p class="helplink"><?php echo $OUTPUT->page_doc_link(); ?></p>
-        <?php
+            <div class="row-fluid"><?php
+                echo $OUTPUT->blocks('before', $before); ?><?php
+                echo $OUTPUT->blocks('behind', $behind); ?>
+            </div>
+        </div><?php
+        echo $OUTPUT->blocks('side-pre', $sidepre); ?>    </div>
+    </div><?php
+        echo $OUTPUT->blocks('side-post', $sidepost); ?>
+    </div>
+
+    <div id="page-footer">
+    <div id="course-footer"><?php echo $OUTPUT->course_footer(); ?></div>
+    <p class="helplink"><?php echo $OUTPUT->page_doc_link(); ?></p><?php
         echo $html->footnote;
         echo $OUTPUT->login_info();
         echo $OUTPUT->home_link();
-        echo $OUTPUT->standard_footer_html();
-        ?>
-    </footer>
-
-    <?php echo $OUTPUT->standard_end_of_body_html() ?>
-
+        echo $OUTPUT->standard_footer_html(); ?>
+    </div><?php
+    echo $OUTPUT->standard_end_of_body_html(); ?>
 </div>
 </body>
 </html>

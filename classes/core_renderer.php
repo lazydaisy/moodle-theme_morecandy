@@ -18,7 +18,7 @@
  * Theme Morecandy core renderer file.
  *
  * @package    theme_morecandy
- * @copyright  2015 bylazydaisy.uk
+ * @copyright  2016 bylazydaisy.uk
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -34,6 +34,24 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
      * @return string HTML fragment.
      */
     protected function render_custom_menu(custom_menu $menu) {
+        global $USER, $PAGE;
+
+        $content = parent::render_custom_menu($menu);
+        $mycourses = $this->page->navigation->get('mycourses');
+        if (isloggedin() && $mycourses && $mycourses->has_children()) {
+            $branchlabel = get_string('mycourses', 'theme_morecandy', $USER->firstname);
+            $branchurl   = new moodle_url('/course/index.php');
+            $branchtitle = $branchlabel;
+            $branchsort  = -1;
+            $branch = $menu->add($branchlabel, $branchurl, $branchtitle, $branchsort);
+
+            foreach ($mycourses->children as $coursenode) {
+                $branch->add($coursenode->get_content(),
+                $coursenode->action,
+                $coursenode->get_title());
+            }
+        }
+
         $content = '<ul class="nav">';
         foreach ($menu->get_children() as $item) {
             $content .= $this->render_custom_menu_item($item, 1);
@@ -51,6 +69,7 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
         $content = preg_replace($patterns, $replacements, $content);
 
         return $content;
+
     }
 
     /**
@@ -98,10 +117,8 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
             $icon = 'fa-edit';
             $title = get_string('turneditingon');
         }
-
         $itag = html_writer::tag('i', '', array('class' => 'course-edit-icon fa '. $icon . ' fa-2x'));
         $content = '';
-
         $content .= html_writer::link($url, $itag, array('href' => $url, 'title' => $title));
 
         return $content;
@@ -118,4 +135,157 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
         return html_writer::tag('li', '', array('class' => 'divider'));
     }
 
+    /** CONTEXT HEADER BAR & ELEMENTS
+     ---------------------------------*/
+
+    /**
+     * Returns the header bar.
+     *
+     * @since Moodle 2.9
+     * @param array $headerinfo An array of header information, dependant on what type of header is being displayed. The following
+     *                          array example is user specific.
+     *                          heading => Override the page heading.
+     *                          user => User object.
+     *                          usercontext => user context.
+     * @param int $headinglevel What level the 'h' tag will be.
+     * @return string HTML for the header bar.
+     */
+    public function context_header($headerinfo = null, $headinglevel = 1) {
+        global $DB, $USER, $CFG;
+        $context = $this->page->context;
+        // Make sure to use the heading if it has been set.
+        if (isset($headerinfo['heading'])) {
+            $heading = $headerinfo['heading'];
+        } else {
+            $heading = null;
+        }
+        $imagedata = null;
+        $subheader = null;
+        $userbuttons = null;
+        // The user context currently has images and buttons. Other contexts may follow.
+        if (isset($headerinfo['user']) || $context->contextlevel == CONTEXT_USER) {
+            if (isset($headerinfo['user'])) {
+                $user = $headerinfo['user'];
+            } else {
+                // Look up the user information if it is not supplied.
+                $user = $DB->get_record('user', array('id' => $context->instanceid));
+            }
+            // If the user context is set, then use that for capability checks.
+            if (isset($headerinfo['usercontext'])) {
+                $context = $headerinfo['usercontext'];
+            }
+            // Use the user's full name if the heading isn't set.
+            if (!isset($heading)) {
+                $heading = fullname($user);
+            }
+
+            $imagedata = $this->user_picture($user, array('size' => 100));
+            // Check to see if we should be displaying a message button.
+            if (!empty($CFG->messaging) && $USER->id != $user->id && has_capability('moodle/site:sendmessage', $context)) {
+                $userbuttons = array(
+                    'messages' => array(
+                        'buttontype' => 'message',
+                        'title' => get_string('message', 'message'),
+                        'url' => new moodle_url('/message/index.php', array('id' => $user->id)),
+                        'image' => 'message',
+                        'linkattributes' => message_messenger_sendmessage_link_params($user),
+                        'page' => $this->page
+                    )
+                );
+                $this->page->requires->string_for_js('changesmadereallygoaway', 'moodle');
+            }
+        }
+
+        $contextheader = new context_header($heading, $headinglevel, $imagedata, $userbuttons);
+        return $this->render_context_header($contextheader);
+    }
+
+     /**
+      * Renders the header bar.
+      *
+      * @param context_header $contextheader Header bar object.
+      * @return string HTML for the header bar.
+      */
+    protected function render_context_header(context_header $contextheader) {
+
+        // All the html stuff goes here.
+        // Set default (LTR) page layout mark-up.
+        $before = 'span6 desktop-first-column';
+        $behind = 'span6 pull-right';
+        $contextheaderleft = $before;
+        $contextheaderright = $behind;
+        // Reset layout mark-up for RTL languages.
+        if (right_to_left()) {
+            $before = 'span6 pull-right';
+            $behind = 'span6 desktop-first-column';
+            $contextheaderleft = $behind;
+            $contextheaderright = $before;
+        }
+
+        $html = html_writer::start_div('page-context-header',
+                array('id' => 'context-header-left', 'class' => $contextheaderleft));
+        // Image data.
+        if (isset($contextheader->imagedata)) {
+
+            // Header specific image.
+            $html .= html_writer::div($contextheader->imagedata, 'page-header-image');
+            $html .= html_writer::tag('div', '',
+            array('id' => 'context-header-right', 'class' => 'page-context-header ' . $contextheaderright));
+        }
+
+        // Headings.
+        if (!isset($contextheader->heading)) {
+            $headings = $this->heading($this->page->heading, $contextheader->headinglevel);
+        } else {
+            $headings = $this->heading($contextheader->heading, $contextheader->headinglevel);
+        }
+
+        $html .= html_writer::tag('div', $headings, array('class' => 'page-header-headings'));
+
+        // Buttons.
+        if (isset($contextheader->additionalbuttons)) {
+            $html .= html_writer::start_div('btn-group header-button-group');
+            foreach ($contextheader->additionalbuttons as $button) {
+                if (!isset($button->page)) {
+                    // Include js for messaging.
+                    if ($button['buttontype'] === 'message') {
+                        message_messenger_requirejs();
+                    }
+                    $image = $this->pix_icon($button['formattedimage'], $button['title'], 'moodle', array(
+                        'class' => 'iconsmall',
+                        'role' => 'presentation'
+                    ));
+                    $image .= html_writer::span($button['title'], 'header-button-title');
+                } else {
+                    $image = html_writer::empty_tag('img', array(
+                        'src' => $button['formattedimage'],
+                        'role' => 'presentation'
+                    ));
+                }
+            $html .= html_writer::end_div();
+        }
+
+            $html .= html_writer::link($button['url'], html_writer::tag('span', $image), $button['linkattributes']);
+}
+        $html .= html_writer::end_div();
+
+        return $html;
+    }
+
+    /**
+     * Wrapper for header elements.
+     *
+     * @return string HTML to display the main header.
+     */
+    public function full_header() {
+        $html = html_writer::start_tag('header', array('id' => 'page-header', 'class' => 'span12 clearfix'));
+        $html .= $this->context_header();
+        $html .= html_writer::start_div('clearfix', array('id' => 'page-navbar'));
+        $html .= html_writer::tag('nav', $this->navbar(), array('class' => 'breadcrumb-nav'));
+        $html .= html_writer::div($this->page_heading_button(), 'breadcrumb-button');
+        $html .= html_writer::end_div();
+        $html .= html_writer::tag('div', $this->course_header(), array('id' => 'course-header'));
+        $html .= html_writer::end_tag('header');
+        return $html;
+    }
 }

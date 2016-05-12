@@ -51,6 +51,10 @@ function theme_morecandy_process_css($css, $theme) {
     $brandicon = $theme->setting_file_url('brandicon', 'brandicon');
     $css = theme_morecandy_set_brandicon($css, $brandicon);
 
+    // Set the background image for the banner.
+    $banner = $theme->setting_file_url('banner', 'banner');
+    $css = theme_morecandy_set_banner($css, $banner);
+
     // Set the background image for the logo.
     $logo = $theme->setting_file_url('logo', 'logo');
     $css = theme_morecandy_set_logo($css, $logo);
@@ -76,6 +80,25 @@ function theme_morecandy_process_css($css, $theme) {
 function theme_morecandy_set_brandicon($css, $brandicon) {
     $tag = '[[setting:brandicon]]';
     $replacement = $brandicon;
+    if (is_null($replacement)) {
+        $replacement = '';
+    }
+
+    $css = str_replace($tag, $replacement, $css);
+
+    return $css;
+}
+
+/**
+ * Adds the banner to CSS.
+ *
+ * @param string $css The CSS.
+ * @param string $logo The URL of the logo.
+ * @return string The parsed CSS
+ */
+function theme_morecandy_set_banner($css, $banner) {
+    $tag = '[[setting:banner]]';
+    $replacement = $banner;
     if (is_null($replacement)) {
         $replacement = '';
     }
@@ -117,7 +140,7 @@ function theme_morecandy_set_logo($css, $logo) {
  * @return bool
  */
 function theme_morecandy_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
-    if ($context->contextlevel == CONTEXT_SYSTEM && ($filearea === 'logo' || $filearea === 'brandicon')) {
+    if ($context->contextlevel == CONTEXT_SYSTEM && ($filearea === 'banner' || $filearea === 'logo' || $filearea === 'brandicon')) {
         $theme = theme_config::load('morecandy');
         // By default, theme files must be cache-able by both browsers and proxies.
         if (!array_key_exists('cacheability', $options)) {
@@ -165,15 +188,28 @@ function theme_morecandy_get_html_for_settings(renderer_base $output, moodle_pag
     global $CFG, $SITE;
     $return = new stdClass;
 
-    $return->branding = '';
-    if (empty($page->theme->settings->brandicon)) {
-        $return->branding = format_string($SITE->shortname, true, array('context' => context_course::instance(SITEID)));
+    $return->brandicon = '';
+    if (!empty($page->theme->settings->brandicon)) {
+        $return->brandicon = html_writer::link(new moodle_url('/'), '', array('class' => 'brand', 'title' => get_string('home')));
+    } else {
+        $return->brandicon = html_writer::link(new moodle_url('/'),
+                             html_writer::tag('i', '', array('class' => 'fa fa-home')),
+                             array('class' => 'brand', 'title' => get_string('home')));
     }
 
+    $return->bodyclasses = '';
+    if (!empty($page->theme->settings->banner)) {
+        $return->bodyclasses = ' has-banner-image ';
+    }
+
+    $return->banner = '';
+    if (!empty($page->theme->settings->banner)) {
+        $return->banner = '<div id="banner"></div>';
+    }
+
+    $return->logo = '';
     if (!empty($page->theme->settings->logo)) {
-        $return->heading = '<div class="logo"></div>';
-    } else {
-        $return->heading = $output->page_heading();
+        $return->logo = '<div id="logo" class="span12"></div>';
     }
 
     $return->welcomenote = '';

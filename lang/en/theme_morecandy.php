@@ -24,8 +24,16 @@
 
 $string['adminoptions'] = 'Admin Options';
 
+$string['banner'] = 'Banner image';
+$string['bannerdesc'] = 'Please upload your custom banner image here if you want to add it just below the top navbar..<br>
+If the height of your banner is more than 200px add the following CSS rule to the Custom CSS box below.<br>
+<pre>#banner {height: 210px;} or whatever height in pixels your banner image happens to be.';
+
 $string['bgimage'] = 'Background image';
 $string['bgimagedesc'] = 'Please upload your background image here if you want to add it to the body of the page.';
+
+$string['brandicon'] = 'Navbar \'Brand\' icon';
+$string['brandicondesc'] = 'This setting allows you to add a small \'Brand\' icon into the top navbar. Idealy the icon should be no bigger than 35px by 35px. Allthough the icon must not be more than 35px in height, its width can be anything upto 150px.';
 
 $string['choosereadme'] = '<p>Morecandy is a theme that allows you to easily customise Moodle\'s look and feel directly from the web interface.</p>
 <p>Visit the admin settings to change colours, add an image as a background, add your logo and more.</p>';
@@ -40,8 +48,8 @@ $string['footnotedesc'] = 'Whatever you add to this textarea will be displayed i
 $string['invert'] = 'Invert navbar';
 $string['invertdesc'] = 'Swaps text and background for the navbar at the top of the page between black and white.';
 
-$string['logo'] = 'Logo';
-$string['logodesc'] = 'Please upload your custom logo here if you want to add it to the header.<br>
+$string['logo'] = 'Logo image';
+$string['logodesc'] = 'Please upload your custom logo here if you want to add it to the page header.<br>
 If the height of your logo is more than 75px add the following CSS rule to the Custom CSS box below.<br>
 div.logo {height: 100px;} or whatever height in pixels the logo is.';
 
@@ -58,10 +66,9 @@ $string['sidewayheadercolor_desc'] = 'This setting allows you to choose a colour
 
 $string['tryingtoredirectyou'] = 'We are trying to redirect you - thank you for your patience.';
 
-$string['mygrades'] = 'My Grades';
 
-$string['brandicon'] = 'Navbar \'Brand\' icon';
-$string['brandicondesc'] = 'This setting allows you to add a small \'Brand\' icon into the top navbar. The icon can not be more than 35px high, but can be any length up 150px.';
+$string['mycourses'] = '{$a}\'s courses';
+$string['mygrades'] = 'My Grades';
 
 $string['welcome'] = 'Welcome back {$a}!';
 $string['welcomenote'] = 'Welcome note';
