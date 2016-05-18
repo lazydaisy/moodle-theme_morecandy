@@ -199,7 +199,6 @@ function theme_morecandy_get_html_for_settings(renderer_base $output, moodle_pag
     }
     $return->brandicon = html_writer::link($url, $itag, array('class' => $classes, 'title' => $title));
 
-
     $return->bodyclasses = '';
     if (!empty($page->theme->settings->banner)) {
         $return->bodyclasses = ' has-banner-image ';

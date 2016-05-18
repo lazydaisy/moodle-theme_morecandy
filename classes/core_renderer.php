@@ -147,7 +147,7 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
             $html .= html_writer::div($contextheader->imagedata, 'page-header-image');
         }
 
-       return $html;
+        return $html;
     }
 
     /**
