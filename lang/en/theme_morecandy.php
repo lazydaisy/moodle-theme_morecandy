@@ -27,7 +27,7 @@ $string['adminoptions'] = 'Admin Options';
 $string['banner'] = 'Banner image';
 $string['bannerdesc'] = 'Please upload your custom banner image here if you want to add it just below the top navbar..<br>
 If the height of your banner is more than 200px add the following CSS rule to the Custom CSS box below.<br>
-<pre>#banner {height: 210px;} or whatever height in pixels your banner image happens to be.';
+<pre>#banner { height: 210px; }</pre> or whatever height in pixels your banner image is.';
 
 $string['bgimage'] = 'Background image';
 $string['bgimagedesc'] = 'Please upload your background image here if you want to add it to the body of the page.';

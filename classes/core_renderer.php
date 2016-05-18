@@ -126,149 +126,28 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
     }
 
     /**
-     * Renders a primary action_menu_filler item.
+     * Renders the header bar.
      *
-     * @param action_menu_link_filler $action
-     * @return string HTML fragment
-     */
-    protected function render_action_menu_filler(action_menu_filler $action) {
-        return html_writer::tag('li', '', array('class' => 'divider'));
-    }
-
-    /** CONTEXT HEADER BAR & ELEMENTS
-     ---------------------------------*/
-
-    /**
-     * Returns the header bar.
-     *
-     * @since Moodle 2.9
-     * @param array $headerinfo An array of header information, dependant on what type of header is being displayed. The following
-     *                          array example is user specific.
-     *                          heading => Override the page heading.
-     *                          user => User object.
-     *                          usercontext => user context.
-     * @param int $headinglevel What level the 'h' tag will be.
+     * @param context_header $contextheader Header bar object.
      * @return string HTML for the header bar.
      */
-    public function context_header($headerinfo = null, $headinglevel = 1) {
-        global $DB, $USER, $CFG;
-        $context = $this->page->context;
-        // Make sure to use the heading if it has been set.
-        if (isset($headerinfo['heading'])) {
-            $heading = $headerinfo['heading'];
-        } else {
-            $heading = null;
-        }
-        $imagedata = null;
-        $subheader = null;
-        $userbuttons = null;
-        // The user context currently has images and buttons. Other contexts may follow.
-        if (isset($headerinfo['user']) || $context->contextlevel == CONTEXT_USER) {
-            if (isset($headerinfo['user'])) {
-                $user = $headerinfo['user'];
-            } else {
-                // Look up the user information if it is not supplied.
-                $user = $DB->get_record('user', array('id' => $context->instanceid));
-            }
-            // If the user context is set, then use that for capability checks.
-            if (isset($headerinfo['usercontext'])) {
-                $context = $headerinfo['usercontext'];
-            }
-            // Use the user's full name if the heading isn't set.
-            if (!isset($heading)) {
-                $heading = fullname($user);
-            }
-
-            $imagedata = $this->user_picture($user, array('size' => 100));
-            // Check to see if we should be displaying a message button.
-            if (!empty($CFG->messaging) && $USER->id != $user->id && has_capability('moodle/site:sendmessage', $context)) {
-                $userbuttons = array(
-                    'messages' => array(
-                        'buttontype' => 'message',
-                        'title' => get_string('message', 'message'),
-                        'url' => new moodle_url('/message/index.php', array('id' => $user->id)),
-                        'image' => 'message',
-                        'linkattributes' => message_messenger_sendmessage_link_params($user),
-                        'page' => $this->page
-                    )
-                );
-                $this->page->requires->string_for_js('changesmadereallygoaway', 'moodle');
-            }
-        }
-
-        $contextheader = new context_header($heading, $headinglevel, $imagedata, $userbuttons);
-        return $this->render_context_header($contextheader);
-    }
-
-     /**
-      * Renders the header bar.
-      *
-      * @param context_header $contextheader Header bar object.
-      * @return string HTML for the header bar.
-      */
     protected function render_context_header(context_header $contextheader) {
 
         // All the html stuff goes here.
-        // Set default (LTR) page layout mark-up.
-        $before = 'span6 desktop-first-column';
-        $behind = 'span6 pull-right';
-        $contextheaderleft = $before;
-        $contextheaderright = $behind;
-        // Reset layout mark-up for RTL languages.
-        if (right_to_left()) {
-            $before = 'span6 pull-right';
-            $behind = 'span6 desktop-first-column';
-            $contextheaderleft = $behind;
-            $contextheaderright = $before;
-        }
+        $html = html_writer::start_div('page-context-header');
 
-        $html = html_writer::start_div('page-context-header',
-                array('id' => 'context-header-left', 'class' => $contextheaderleft));
         // Image data.
-        if (isset($contextheader->imagedata)) {
+        global $PAGE;
 
-            // Header specific image.
+        // Header specific image.
+        if ($PAGE->pagetype == 'user-profile' && isset($contextheader->imagedata)) {
+            $html .= html_writer::tag('h2', get_string('profile'));
             $html .= html_writer::div($contextheader->imagedata, 'page-header-image');
-            $html .= html_writer::tag('div', '',
-            array('id' => 'context-header-right', 'class' => 'page-context-header ' . $contextheaderright));
-        }
-
-        // Headings.
-        if (!isset($contextheader->heading)) {
-            $headings = $this->heading($this->page->heading, $contextheader->headinglevel);
         } else {
-            $headings = $this->heading($contextheader->heading, $contextheader->headinglevel);
+            $html .= html_writer::div($contextheader->imagedata, 'page-header-image');
         }
 
-        $html .= html_writer::tag('div', $headings, array('class' => 'page-header-headings'));
-
-        // Buttons.
-        if (isset($contextheader->additionalbuttons)) {
-            $html .= html_writer::start_div('btn-group header-button-group');
-            foreach ($contextheader->additionalbuttons as $button) {
-                if (!isset($button->page)) {
-                    // Include js for messaging.
-                    if ($button['buttontype'] === 'message') {
-                        message_messenger_requirejs();
-                    }
-                    $image = $this->pix_icon($button['formattedimage'], $button['title'], 'moodle', array(
-                        'class' => 'iconsmall',
-                        'role' => 'presentation'
-                    ));
-                    $image .= html_writer::span($button['title'], 'header-button-title');
-                } else {
-                    $image = html_writer::empty_tag('img', array(
-                        'src' => $button['formattedimage'],
-                        'role' => 'presentation'
-                    ));
-                }
-                $html .= html_writer::end_div();
-            }
-            $html .= html_writer::link($button['url'], html_writer::tag('span', $image), $button['linkattributes']);
-        }
-        $html .= html_writer::end_div();
-
-        return $html;
+       return $html;
     }
 
     /**

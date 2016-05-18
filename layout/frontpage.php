@@ -27,7 +27,8 @@
  * @copyright 2016 byLazyDaisy.uk
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-// Get the HTML for the various settings.
+
+// Get the HTML for the settings bits.
 $html = theme_morecandy_get_html_for_settings($OUTPUT, $PAGE);
 
 // Set default (LTR) layout mark-up for a three column page.
@@ -37,7 +38,7 @@ $sidepre = 'span4 desktop-first-column';
 $sidepost = 'span3 pull-right';
 // Reset layout mark-up for RTL languages.
 if (right_to_left()) {
-    $regionmainbox = 'span9 pull-right ';
+    $regionmainbox = 'span9 pull-right';
     $regionmain = 'span8';
     $sidepre = 'span4 pull-right';
     $sidepost = 'span3 desktop-first-column';
@@ -47,12 +48,9 @@ echo $OUTPUT->doctype() ?>
 <html <?php echo $OUTPUT->htmlattributes(); ?>>
 <head>
     <title><?php echo $OUTPUT->page_title(); ?></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="MobileOptimized" content="320">
-    <meta name="HandheldFriendly" content="True">
     <link rel="shortcut icon" href="<?php echo $OUTPUT->favicon(); ?>" />
-    <link rel="apple-touch-icon" href="<?php echo $OUTPUT->pix_url('ico/apple-touch-icon', 'theme'); ?>" />
     <?php echo $OUTPUT->standard_head_html() ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body <?php echo $OUTPUT->body_attributes($html->bodyclasses); ?>>
@@ -62,13 +60,9 @@ echo $OUTPUT->doctype() ?>
 <?php require('includes/banner.php'); ?>
 
 <div id="page" class="container-fluid">
-    <div id="page-header" class="clearfix">
-        <div class="row-fluid">
-        <?php echo $html->logo; ?>
-        <?php echo $html->welcomenote; ?>
-        <h1 class="headermain"><?php echo $this->page->heading; ?></h1>
-        </div>
 
+    <header id="page-header" class="clearfix">
+        <?php echo $OUTPUT->page_heading(); ?>
         <div id="page-navbar" class="clearfix">
             <nav class="breadcrumb-nav"><?php echo $OUTPUT->navbar(); ?></nav>
             <div class="breadcrumb-button"><?php echo $OUTPUT->page_heading_button(); ?></div>
@@ -76,7 +70,8 @@ echo $OUTPUT->doctype() ?>
         <div id="course-header">
             <?php echo $OUTPUT->course_header(); ?>
         </div>
-    </div>
+    </header>
+
     <div id="page-content" class="row-fluid">
         <div id="region-main-box" class="<?php echo $regionmainbox; ?>">
             <div class="row-fluid">
@@ -97,10 +92,7 @@ echo $OUTPUT->doctype() ?>
         <div id="course-footer"><?php echo $OUTPUT->course_footer(); ?></div>
         <p class="helplink"><?php echo $OUTPUT->page_doc_link(); ?></p>
         <?php
-        $context = context_system::instance();
-        if (has_capability('moodle/course:create', $context)) {
-            echo $html->footnote;
-        }
+        echo $html->footnote;
         echo $OUTPUT->login_info();
         echo $OUTPUT->home_link();
         echo $OUTPUT->standard_footer_html();

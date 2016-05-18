@@ -209,7 +209,16 @@ h6 {font-size: 100%;}
     width: 25px;
     margin: 0;
 }
-
+.usermenu .iconsmall {
+    width: 25px;
+    height: 25px;
+}
+.jsenabled .usermenu .moodle-actionmenu > .menu .filler {
+    margin: 0 1px;
+}
+.jsenabled .usermenu .moodle-actionmenu.show .menu {
+    padding: 0;
+}
 /* User avatars
 -------------------------*/
 .usermenu {
@@ -783,50 +792,6 @@ h6 {font-size: 100%;}
     overflow: visible;
 }
 
-/** Header-bar styles **/
-.page-context-header {
-    // We need to be explicit about the height of the header.
-    @pageHeaderHeight: 100px;
-
-    // Do not remove these rules.
-    overflow: hidden;
-
-    .page-header-image,
-    .page-header-headings {
-        display: block;
-        position: relative;
-    }
-    .page-header-image {
-        margin-bottom: 1em;
-    }
-    .page-header-headings {
-        margin-top: 30px;
-        margin-bottom: 10px;
-
-        h1 {
-            display: block;
-        }
-    }
-
-    .page-header-headings,
-    .header-button-group {
-        position: relative;
-        line-height: 24px;
-        vertical-align: middle;
-    }
-
-    .header-button-group {
-        display: block;
-
-        a {
-            position: relative;
-
-            // Don't touch it unless you know exactly what you are doing.
-            top: -0.4em;
-        }
-    }
-}
-
 .dir-ltr .page-context-header {
     .page-header-image {
         float: left;
@@ -851,4 +816,74 @@ h6 {font-size: 100%;}
 #page-navbar .breadcrumb-nav .breadcrumb {
     float: left;
     clear: left;
+}
+#page-login-index .signuppanel,
+#page-login-index .loginpanel,
+#page-user-profile .page-context-header {
+    position: relative;
+    border-color: @sidewayHeaderColor;
+    border-style: solid;
+    border-width: 1px 1px 1px 34px;
+    width: auto;
+    color: @sidewayHeaderColor;
+    h1 {
+        font-family: 'Impact';
+        font-size: 300%;
+        text-decoration: underline;
+    }
+    h2 {
+        font: bold 12px Sans-Serif;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: @navbarLinkColor;
+        padding: 4px 5px;
+        line-height: 24px;
+        /* Abs positioning makes it not take up vert space */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: auto;
+
+        /* Rotate from top left corner (not default) */
+
+        -webkit-transform-origin: 0 0;
+           -moz-transform-origin: 0 0;
+            -ms-transform-origin: 0 0;
+             -o-transform-origin: 0 0;
+                transform-origin: 0 0;
+
+        -webkit-transform: rotate(90deg);
+           -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+             -o-transform: rotate(90deg);
+                transform: rotate(90deg);
+    }
+}
+
+#page-login-index .signuppanel,
+#page-login-index .loginpanel {
+    width: 45%;
+    margin: 0 2%;
+    height: 400px;
+}
+
+.dir-ltr .page-context-header .header-button-group {
+    float: left;
+}
+.dir-rtl .page-context-header .header-button-group {
+    float: right;
+}
+.page-context-header {
+    overflow: visible;
+}
+
+/* FontAwesome
+-------------------------*/
+.fa {
+    color: @sidewayHeaderColor;
+}
+/* Except the follwoing
+-------------------------*/
+a.brand .fa {
+    color: white;
 }

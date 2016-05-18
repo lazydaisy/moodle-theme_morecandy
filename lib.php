@@ -189,13 +189,16 @@ function theme_morecandy_get_html_for_settings(renderer_base $output, moodle_pag
     $return = new stdClass;
 
     $return->brandicon = '';
+    $url = new moodle_url('/');
+    $classes = 'brand';
+    $title = get_string('home');
     if (!empty($page->theme->settings->brandicon)) {
-        $return->brandicon = html_writer::link(new moodle_url('/'), '', array('class' => 'brand', 'title' => get_string('home')));
+        $itag = '';
     } else {
-        $return->brandicon = html_writer::link(new moodle_url('/'),
-                             html_writer::tag('i', '', array('class' => 'fa fa-home')),
-                             array('class' => 'brand', 'title' => get_string('home')));
+        $itag = '<i class="fa fa-home"></i>';
     }
+    $return->brandicon = html_writer::link($url, $itag, array('class' => $classes, 'title' => $title));
+
 
     $return->bodyclasses = '';
     if (!empty($page->theme->settings->banner)) {
@@ -204,12 +207,12 @@ function theme_morecandy_get_html_for_settings(renderer_base $output, moodle_pag
 
     $return->banner = '';
     if (!empty($page->theme->settings->banner)) {
-        $return->banner = '<div id="banner"></div>';
+        $return->banner = '<div id="banner"><div class="texturizer"></div></div>';
     }
 
     $return->logo = '';
     if (!empty($page->theme->settings->logo)) {
-        $return->logo = '<div id="logo" class="span12"></div>';
+        $return->logo = '<div id="logo"></div>';
     }
 
     $return->welcomenote = '';
