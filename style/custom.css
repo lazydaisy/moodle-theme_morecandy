@@ -1,20 +1,39 @@
 /* Custom CSS
 -------------------------*/
-.pagelayout-frontpage.has-banner-image #banner {
+.pagelayout-login.has-logo #logo,
+.pagelayout-login.has-banner #banner,
+.pagelayout-frontpage.has-logo #logo,
+.pagelayout-frontpage.has-banner #banner {
+    display: block;
+    float: none;
+    margin: 0;
+    padding: 0;
+    height: auto;
+    width: auto;
+}
+.pagelayout-login.has-banner #banner,
+.pagelayout-frontpage.has-banner #banner {
     background-image: url([[setting:banner]]);
     background-position: center top;
     background-repeat: no-repeat;
-    display: block;
-    float: none;
-    margin: 0 0 20px;
-    padding: 0;
-    width: 100%;
     height: 200px;
+    width: 100%;
 }
-.pagelayout-frontpage.has-banner-image #banner .texturizer {
-    background-image: url([[pix:theme|texturizer]]);
-    background-position: left top;
-    background-repeat: repeat;
+.pagelayout-login.has-logo #logo,
+.pagelayout-frontpage.has-logo #logo {
+    background-image: url([[setting:logo]]);
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 100px;
+    width: 690px;
+    margin: auto;
+}
+.pagelayout-login.has-logo .texturizer,
+.pagelayout-login.has-banner .texturizer,
+.pagelayout-login.has-texturizer .texturizer,
+.pagelayout-frontpage.has-logo .texturizer,
+.pagelayout-frontpage.has-banner .texturizer,
+.pagelayout-frontpage.has-texturizer .texturizer {
     display: block;
     float: none;
     margin: 0;
@@ -22,19 +41,15 @@
     width: 100%;
     height: 100%;
 }
-#logo {
-    background-image: url([[setting:logo]]);
-    background-repeat: no-repeat;
-    display: block;
-    float: left;
-    height: 75px;
-    margin: 0 0 20px;
-    padding: 0;
+.pagelayout-login.has-texturizer .texturizer,
+.pagelayout-frontpage.has-texturizer .texturizer {
+    background-color: transpareent;
+    background-image: url([[pix:theme|texturizer]]);
 }
-dir-rtl #logo {
-    background-position: 100% 0;
+.pagelayout-frontpage.dir-rtl #logo {
+    background-position: 50% 50%;
     display: block;
-    float: right;
+    float: none;
 }
 a.brand {
     background-image: url([[setting:brandicon]]);
@@ -44,4 +59,19 @@ a.brand {
     height: 20px;
     font-size: 22px;
     padding: 10px 20px;
+    margin-left: -5px;
+}
+.dir-rtl .navbar .brand {
+    float: right;
+    margin-left: 0;
+    margin-right: -5px;
+    padding: 10px 20px;
+}
+/* Experimental
+-------------------------*/
+.pagelayout-mypublic .page-context-header {
+    background-image: url([[setting:banner]]);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: auto;
 }

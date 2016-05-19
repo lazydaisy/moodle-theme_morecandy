@@ -92,7 +92,7 @@ body {
     &.show[data-enhanced] {
         .menu {
             a {
-                padding: 2px 1em;
+                padding: 2px 0.5em;
             }
         }
     }
@@ -794,27 +794,29 @@ h6 {font-size: 100%;}
 
 .dir-ltr .page-context-header {
     .page-header-image {
-        float: left;
+        float: none;
         margin-right: 1em;
+        margin-bottom: 0;
     }
 
     .header-button-group {
-        float: left;
+        float: none;
     }
 }
 
 .dir-rtl .page-context-header {
     .page-header-image {
-        float: right;
+        float: none;
         margin-left: 1em;
+        margin-bottom: 0;
     }
 
     .header-button-group {
-        float: right;
+        float:none;
     }
 }
 #page-navbar .breadcrumb-nav .breadcrumb {
-    float: left;
+    float: none;
     clear: left;
 }
 #page-login-index .signuppanel,
@@ -887,3 +889,26 @@ h6 {font-size: 100%;}
 a.brand .fa {
     color: white;
 }
+.dock {
+    top: 40px;
+}
+#dock .dockeditem_container {
+    margin-top: 60px;
+}
+#dockeditempanel .dockeditempanel_hd .commands {
+    display: block;
+    text-align: right;
+    float: right;
+    clear: right;
+}
+.dockeditempanel_hd h2 {
+    float: left;
+    clear: left;
+}
+.dockeditempanel_bd {
+    margin-top: 30px;
+    max-height: 300px;
+    overflow: auto;
+}
+
+

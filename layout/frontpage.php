@@ -63,7 +63,6 @@ echo $OUTPUT->doctype() ?>
 
     <div id="page-header" class="clearfix">
         <div class="row-fluid">
-        <?php echo $html->heading; ?>
         <?php echo $html->welcomenote; ?>
     </div>
 

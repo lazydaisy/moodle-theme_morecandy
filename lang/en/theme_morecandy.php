@@ -26,7 +26,7 @@ $string['adminoptions'] = 'Admin Options';
 
 $string['banner'] = 'Banner image';
 $string['bannerdesc'] = 'Please upload your custom banner image here if you want to add it just below the top navbar..<br>
-If the height of your banner is more than 200px add the following CSS rule to the Custom CSS box below.<br>
+If the height of your banner is more than 200px add the following CSS rule to the <a href="#admin-customcss">Custom CSS</a> box below.<br>
 <pre>#banner { height: 210px; }</pre> or whatever height in pixels your banner image is.';
 
 $string['bgimage'] = 'Background image';
@@ -45,13 +45,13 @@ $string['customcssdesc'] = 'Whatever CSS rules you add to this textarea will be 
 $string['footnote'] = 'Footnote';
 $string['footnotedesc'] = 'Whatever you add to this textarea will be displayed in the footer throughout your Moodle site.';
 
-$string['invert'] = 'Invert navbar';
-$string['invertdesc'] = 'Swaps text and background for the navbar at the top of the page between black and white.';
-
 $string['logo'] = 'Logo image';
 $string['logodesc'] = 'Please upload your custom logo here if you want to add it to the page header.<br>
-If the height of your logo is more than 75px add the following CSS rule to the Custom CSS box below.<br>
-div.logo {height: 100px;} or whatever height in pixels the logo is.';
+If the height of your logo is more than 100px add the following CSS rule to the Custom CSS box below.<br>
+div.logo {height: 125px;} or whatever height in pixels your logo image is.';
+
+$string['mycourses'] = 'My courses';
+$string['mygrades'] = 'My Grades';
 
 $string['pluginname'] = 'Morecandy';
 
@@ -64,11 +64,8 @@ $string['region-side-pre'] = 'Left';
 $string['sidewayheadercolor'] = 'Sideway header colour';
 $string['sidewayheadercolor_desc'] = 'This setting allows you to choose a colour to repace the default which is a shade of blue.';
 
-$string['tryingtoredirectyou'] = 'We are trying to redirect you - thank you for your patience.';
-
-
-$string['mycourses'] = '{$a}\'s courses';
-$string['mygrades'] = 'My Grades';
+$string['texturizer'] = 'Texturizer filter';
+$string['texturizerdesc'] = 'If enabled, the Texturizer filter adds a subtle haze to your banner or logo or both.';
 
 $string['welcome'] = 'Welcome back {$a}!';
 $string['welcomenote'] = 'Welcome note';

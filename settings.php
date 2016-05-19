@@ -66,6 +66,14 @@ if ($ADMIN->fulltree) {
     $setting->set_updatedcallback('theme_reset_all_caches');
     $settings->add($setting);
 
+    // Select option for texturizer filter in banner.
+    $name = 'theme_morecandy/texturizer';
+    $title = get_string('texturizer', 'theme_morecandy');
+    $description = get_string('texturizerdesc', 'theme_morecandy');
+    $setting = new admin_setting_configcheckbox($name, $title, $description, 0);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $settings->add($setting);
+
     // Logo file uploader setting...
     $name = 'theme_morecandy/logo';
     $title = get_string('logo', 'theme_morecandy');

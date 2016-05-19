@@ -54,5 +54,4 @@ $hascustommenu = (empty($PAGE->layout_options['nocustommenu']) && !empty($custom
     </div>
     </nav>
 </div><?php
-
 echo $html->banner;

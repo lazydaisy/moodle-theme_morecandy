@@ -200,28 +200,47 @@ function theme_morecandy_get_html_for_settings(renderer_base $output, moodle_pag
     $return->brandicon = html_writer::link($url, $itag, array('class' => $classes, 'title' => $title));
 
     $return->bodyclasses = '';
-    if (!empty($page->theme->settings->banner)) {
-        $return->bodyclasses = ' has-banner-image ';
+    if ((!empty($page->theme->settings->banner)) && (!empty($page->theme->settings->logo)) && (!empty($page->theme->settings->texturizer))) {
+        $return->bodyclasses = ' has-banner has-logo has-texturizer';
+    }
+
+    if ((!empty($page->theme->settings->banner))  && (!empty($page->theme->settings->logo)) && (empty($page->theme->settings->texturizer))) {
+        $return->bodyclasses = ' has-banner has-logo';
+    }
+
+    if ((!empty($page->theme->settings->banner)) && (empty($page->theme->settings->logo)) && (!empty($page->theme->settings->texturizer))) {
+        $return->bodyclasses = ' has-banner has-texturizer';
+    }
+
+    if ((!empty($page->theme->settings->banner)) && (empty($page->theme->settings->logo)) && (empty($page->theme->settings->texturizer))) {
+        $return->bodyclasses = ' has-banner ';
+    }
+
+    if ((empty($page->theme->settings->banner)) && (!empty($page->theme->settings->logo)) && (!empty($page->theme->settings->texturizer))) {
+        $return->bodyclasses = ' has-logo has-texturizer ';
+    }
+
+    if ((empty($page->theme->settings->banner)) && (!empty($page->theme->settings->logo)) && (empty($page->theme->settings->texturizer))) {
+        $return->bodyclasses = ' has-logo ';
     }
 
     $return->banner = '';
-    if (!empty($page->theme->settings->banner)) {
-        $return->banner = '<div id="banner"><div class="texturizer"></div></div>';
-    }
-
-    $return->logo = '';
-    if (!empty($page->theme->settings->logo)) {
-        $return->logo = '<div id="logo"></div>';
+    if ((!empty($page->theme->settings->banner)) || (!empty($page->theme->settings->logo))) {
+        $return->banner = '<div id="banner"><div class="texturizer"><div id="logo"></div></div></div>';
     }
 
     $return->welcomenote = '';
     if (!empty($page->theme->settings->welcomenote)) {
-        $return->welcomenote = '<div class="row-fluid">'.format_text($page->theme->settings->welcomenote).'</div>';
+        $return->welcomenote = html_writer::tag('div',
+                                         format_text($page->theme->settings->welcomenote),
+                                         array('class' => 'row-fluid'));
     }
 
-    $return->footnote = '';
+     $return->footnote = '';
     if (!empty($page->theme->settings->footnote)) {
-        $return->footnote = '<div class="footnote text-center">'.format_text($page->theme->settings->footnote).'</div>';
+        $return->footnote = html_writer::tag('div',
+                                         format_text($page->theme->settings->footnote),
+                                         array('class' => 'footnote'));
     }
 
     return $return;
