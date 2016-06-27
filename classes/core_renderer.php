@@ -118,4 +118,66 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
         return html_writer::tag('li', '', array('class' => 'divider'));
     }
 
+
+    /**
+     * Renders the header bar.
+     *
+     * @param context_header $contextheader Header bar object.
+     * @return string HTML for the header bar.
+     */
+    protected function render_context_header(context_header $contextheader) {
+
+        // All the html stuff goes here.
+        $html = html_writer::start_div('page-context-header');
+
+        // Image data.
+        global $PAGE;
+
+        if ( $PAGE->pagetype == 'user-profile' && isset($contextheader->imagedata )) {
+
+            // Header specific image.
+            $html .= html_writer::tag('h2', get_string('profile'));
+            $html .= html_writer::div($contextheader->imagedata, 'page-header-image');
+        } else {
+            $html .= html_writer::div($contextheader->imagedata, 'page-header-image');
+        }
+
+        // Headings.
+        if (!isset($contextheader->heading)) {
+            $headings = $this->heading($this->page->heading, $contextheader->headinglevel);
+        } else {
+            $headings = $this->heading($contextheader->heading, $contextheader->headinglevel);
+        }
+
+        $html .= html_writer::tag('div', $headings, array('class' => 'page-header-headings'));
+
+        // Buttons.
+        if (isset($contextheader->additionalbuttons)) {
+            $html .= html_writer::start_div('btn-group header-button-group');
+            foreach ($contextheader->additionalbuttons as $button) {
+                if (!isset($button->page)) {
+                    // Include js for messaging.
+                    if ($button['buttontype'] === 'message') {
+                        message_messenger_requirejs();
+                    }
+                    $image = $this->pix_icon($button['formattedimage'], $button['title'], 'moodle', array(
+                        'class' => 'iconsmall',
+                        'role' => 'presentation'
+                    ));
+                    $image .= html_writer::span($button['title'], 'header-button-title');
+                } else {
+                    $image = html_writer::empty_tag('img', array(
+                        'src' => $button['formattedimage'],
+                        'role' => 'presentation'
+                    ));
+                }
+                $html .= html_writer::link($button['url'], html_writer::tag('span', $image), $button['linkattributes']);
+            }
+            $html .= html_writer::end_div();
+        }
+        $html .= html_writer::end_div();
+
+        return $html;
+    }
+
 }

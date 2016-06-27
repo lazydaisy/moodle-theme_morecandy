@@ -48,9 +48,6 @@ $THEME->lessvariablescallback = 'theme_morecandy_less_variables';
 $THEME->extralesscallback = 'theme_morecandy_extra_less';
 
 $THEME->enable_dock = true;
-$THEME->javascripts_footer = array('morecandy');
-
-
 
 $THEME->layouts = array(
     // Most backwards compatible layout without the blocks - this is the layout used by default.

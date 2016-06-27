@@ -24,7 +24,7 @@
  * http://docs.moodle.org/dev/Themes_2.0
  *
  * @package   theme_morecandy
- * @copyright 2015 byLazyDaisy.uk
+ * @copyright 2016 byLazyDaisy.uk
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -56,11 +56,7 @@ function theme_morecandy_process_css($css, $theme) {
     $css = theme_morecandy_set_logo($css, $logo);
 
     // Set custom CSS.
-    if (!empty($theme->settings->customcss)) {
-        $customcss = $theme->settings->customcss;
-    } else {
-        $customcss = null;
-    }
+    $customcss = $theme->settings->customcss;
     $css = theme_morecandy_set_customcss($css, $customcss);
 
     return $css;
@@ -165,10 +161,16 @@ function theme_morecandy_get_html_for_settings(renderer_base $output, moodle_pag
     global $CFG, $SITE;
     $return = new stdClass;
 
-    $return->branding = '';
-    if (empty($page->theme->settings->brandicon)) {
-        $return->branding = format_string($SITE->shortname, true, array('context' => context_course::instance(SITEID)));
+    $return->brandicon = '';
+    $url = new moodle_url('/');
+    $classes = 'brand';
+    $title = get_string('home');
+    if (!empty($page->theme->settings->brandicon)) {
+        $itag = '';
+    } else {
+        $itag = '<i class="fa fa-home"></i>';
     }
+    $return->brandicon = html_writer::link($url, $itag, array('class' => $classes, 'title' => $title));
 
     if (!empty($page->theme->settings->logo)) {
         $return->heading = '<div class="logo"></div>';

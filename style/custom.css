@@ -13,8 +13,10 @@ div.logo {
 }
 a.brand {
     background-image: url([[setting:brandicon]]);
-    background-position: center;
+    background-position: 50% 50%;
     background-repeat: no-repeat;
     display: block;
+    font-size: 22px;
     height: 20px;
+    padding: 10px 20px;
 }

@@ -744,7 +744,7 @@ h6 {font-size: 100%;}
     border-width: 1px 1px 1px 34px;
     min-height: 200px;
     background-color: @white;
-        h2 {
+        .profile-header, h2 {
         font: bold 12px Sans-Serif;
         letter-spacing: 2px;
         text-transform: uppercase;
@@ -801,8 +801,6 @@ h6 {font-size: 100%;}
 }
 .page-context-header .page-header-image {
     margin: 0;
-    height: 100px;
-    width: 100px;
 }
 .page-context-header .page-header-headings {
     margin: 10px 0;
@@ -823,3 +821,50 @@ h6 {font-size: 100%;}
     position: relative;
     top: 0;
 }
+#page-user-profile .page-context-header {
+    position: relative;
+    border-color: @sidewayHeaderColor;
+    border-style: solid;
+    border-width: 1px 1px 1px 34px;
+    width: auto;
+    color: @sidewayHeaderColor;
+    h1 {
+        font-family: 'Impact';
+        font-size: 300%;
+        text-decoration: underline;
+    }
+    h2 {
+        font: bold 12px Sans-Serif;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: @navbarLinkColor;
+        padding: 4px 5px;
+        line-height: 24px;
+        /* Abs positioning makes it not take up vert space */
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        /* Rotate from top left corner (not default) */
+
+        -webkit-transform-origin: 0 0;
+           -moz-transform-origin: 0 0;
+            -ms-transform-origin: 0 0;
+             -o-transform-origin: 0 0;
+                transform-origin: 0 0;
+
+        -webkit-transform: rotate(90deg);
+           -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+             -o-transform: rotate(90deg);
+                transform: rotate(90deg);
+    }
+}
+
+.dir-ltr .page-context-header .header-button-group {
+    float: left;
+}
+.dir-rtl .page-context-header .header-button-group {
+    float: right;
+}
+
