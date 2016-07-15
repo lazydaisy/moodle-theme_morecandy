@@ -15,12 +15,15 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * The embedded layout.
+ * The one column layout.
  *
  * @package   theme_morecandy
  * @copyright 2016 byLazyDaisy.uk
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+// Get the HTML for the settings bits.
+$html = theme_morecandy_get_html_for_settings($OUTPUT, $PAGE);
 
 echo $OUTPUT->doctype() ?>
 <html <?php echo $OUTPUT->htmlattributes(); ?>>
@@ -32,12 +35,38 @@ echo $OUTPUT->doctype() ?>
 </head>
 
 <body <?php echo $OUTPUT->body_attributes(); ?>>
+
 <?php echo $OUTPUT->standard_top_of_body_html() ?>
-<div id="page">
-    <div id="page-content" class="clearfix">
-        <?php echo $OUTPUT->main_content(); ?>
+
+<?php require('includes/banner.php'); ?>
+
+<div id="page" class="container-fluid">
+
+    <?php echo $OUTPUT->full_header(); ?>
+
+    <div id="page-content" class="row-fluid">
+        <section id="region-main" class="span12">
+            <?php
+            echo $OUTPUT->course_content_header();
+            echo $OUTPUT->main_content();
+            echo $OUTPUT->course_content_footer();
+            ?>
+        </section>
     </div>
+
+    <footer id="page-footer">
+        <div id="course-footer"><?php echo $OUTPUT->course_footer(); ?></div>
+        <p class="helplink"><?php echo $OUTPUT->page_doc_link(); ?></p>
+        <?php
+        echo $html->footnote;
+        echo $OUTPUT->login_info();
+        echo $OUTPUT->home_link();
+        echo $OUTPUT->standard_footer_html();
+        ?>
+    </footer>
+
+    <?php echo $OUTPUT->standard_end_of_body_html() ?>
+
 </div>
-<?php echo $OUTPUT->standard_end_of_body_html() ?>
 </body>
 </html>
