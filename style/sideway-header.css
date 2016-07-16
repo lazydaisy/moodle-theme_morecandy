@@ -104,7 +104,8 @@
 .jsenabled .block_blog_recent {
     min-height: 120px;
 }
-.jsenabled .block_progress {
+.jsenabled .block_progress,
+.jsenabled .block_lp {
     min-height: 135px;
 }
 .jsenabled .block_private_files {

@@ -21,10 +21,20 @@
 }
 
 /* Class name via Modernizr */
-.dir-rtl.jsenabled .block {
+.dir-rtl.jsenabled .block,
+#page-login-index.dir-rtl.jsenabled .signuppanel,
+#page-login-index.dir-rtl.jsenabled .loginpanel,
+#page-user-profile.dir-rtl.jsenabled .page-context-header,
+#page-user-profile.dir-rtl.jsenabled section.node_category,
+#page-grade-report-overview-index.dir-rtl.jsenabled #region-main .no-overflow {
     border-width: 1px 34px 1px 1px;
 }
-.dir-rtl.jsenabled .block .header h2 {
+.dir-rtl.jsenabled .block .header h2,
+#page-user-profile.dir-rtl.jsenabled section.node_category h3,
+#page-grade-report-overview-index.dir-rtl.jsenabled #region-main .no-overflow h3,
+#page-login-index.dir-rtl.jsenabled .signuppanel h2,
+#page-login-index.dir-rtl.jsenabled .loginpanel h2,
+#page-user-profile.dir-rtl.jsenabled .page-context-header h2 {
     /* Abs positioning makes it not take up vert space */
     position: absolute;
     top: 0;
