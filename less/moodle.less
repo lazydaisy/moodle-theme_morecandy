@@ -677,18 +677,27 @@ h6 {font-size: 100%;}
     }
 }
 
-.moodle-actionmenu.show[data-enhanced] .menu .iconsmall,
-.moodle-actionmenu.show[data-enhanced] .menu .smallicon {
-    margin: 4px;
-    padding: 4px;
+.moodle-actionmenu.show[data-enhanced] {
+    .menu {
+        .iconsmall,
+        .smallicon {
+            margin: 4px;
+            padding: 4px;
+        }
+    }
 }
 .invisible {
     background-color: rgba(123, 123, 123, 0.5);
 }
-
-.usermenu .moodle-actionmenu[data-enhanced] .menu .menu-action.icon:hover img {
-    background-color: @white;
-    border-radius: 50%;
+.usermenu {
+    .moodle-actionmenu[data-enhanced] {
+        .menu {
+            .menu-action.icon:hover img {
+                background-color: @white;
+                border-radius: 50%;
+            }
+        }
+    }
 }
 
 #page-user-profile section.node_category,
@@ -726,51 +735,61 @@ h6 {font-size: 100%;}
                 transform: rotate(90deg);
     }
 }
-#page-user-preferences #region-main {
-    position: relative;
-    border-color: @sidewayHeaderColor;
-    border-style: solid;
-    border-width: 1px 1px 1px 34px;
-    min-height: 200px;
-    background-color: @white;
-        h2 {
-        font: bold 12px Sans-Serif;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: @navbarLinkColor;
-        padding: 4px 5px;
-        line-height: 24px;
-        /* Abs positioning makes it not take up vert space */
-        position: absolute;
-        top: 0;
-        left: 0;
+#page-user-preferences {
+    #region-main {
+        position: relative;
+        border-color: @sidewayHeaderColor;
+        border-style: solid;
+        border-width: 1px 1px 1px 34px;
+        min-height: 200px;
+        background-color: @white;
+            h2 {
+            font: bold 12px Sans-Serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: @navbarLinkColor;
+            padding: 4px 5px;
+            line-height: 24px;
+            /* Abs positioning makes it not take up vert space */
+            position: absolute;
+            top: 0;
+            left: 0;
 
-        /* Rotate from top left corner (not default) */
+            /* Rotate from top left corner (not default) */
 
-        -webkit-transform-origin: 0 0;
-           -moz-transform-origin: 0 0;
-            -ms-transform-origin: 0 0;
-             -o-transform-origin: 0 0;
-                transform-origin: 0 0;
+            -webkit-transform-origin: 0 0;
+               -moz-transform-origin: 0 0;
+                -ms-transform-origin: 0 0;
+                 -o-transform-origin: 0 0;
+                    transform-origin: 0 0;
 
-        -webkit-transform: rotate(90deg);
-           -moz-transform: rotate(90deg);
-            -ms-transform: rotate(90deg);
-             -o-transform: rotate(90deg);
-                transform: rotate(90deg);
+            -webkit-transform: rotate(90deg);
+               -moz-transform: rotate(90deg);
+                -ms-transform: rotate(90deg);
+                 -o-transform: rotate(90deg);
+                    transform: rotate(90deg);
+        }
+        .preferences-groups {
+            padding-left: 20px;
+        }
     }
 }
-#page-user-preferences #region-main .preferences-groups {
-    padding-left: 20px;
+
+.path-course-view {
+    .course-content {
+        ul li.section {
+            padding: 60px;
+            margin: -60px;
+        }
+    }
 }
 
-.path-course-view .course-content ul li.section {
-    padding: 60px;
-    margin: -60px;
-}
-
-#page-grade-report-overview-index #region-main .no-overflow {
-    overflow: visible;
+#page-grade-report-overview-index {
+    #region-main {
+        .no-overflow {
+            overflow: visible;
+        }
+    }
 }
 
 .dir-ltr .page-context-header {
@@ -796,10 +815,60 @@ h6 {font-size: 100%;}
         float:none;
     }
 }
-#page-navbar .breadcrumb-nav .breadcrumb {
-    float: none;
-    clear: left;
+#page-navbar {
+    .breadcrumb-nav {
+        .breadcrumb {
+            float: none;
+            clear: left;
+        }
+    }
 }
+
+#page-user-profile {
+    img.userpicture.defaultuserpic {
+        border-width: 15px 15px 15px 0;
+        border-style: solid;
+        border-color: @sidewayHeaderColor;
+        border-radius: 0 50% 50% 0;
+        border-image: none;
+    }
+    .avatar.current {
+        img.userpicture.defaultuserpic {
+            border-width: 1px;
+            border-radius: 50% 50% 6%;
+            border-color: @sidewayHeaderColorHover;
+        }
+    }
+    #region-main {
+        #page-header {
+            margin-bottom: 20px;
+            #page-navbar {
+                .breadcrumb-button {
+                    margin: auto 20px;
+                }
+            }
+        }
+    }
+}
+
+.dir-rtl {
+    &#page-user-profile {
+        img.userpicture.defaultuserpic {
+            border-width: 15px 0 15px 15px;
+            border-style: solid;
+            border-color: @sidewayHeaderColor;
+            border-radius: 50% 0 0 50%;
+            border-image: none;
+        }
+        .avatar.current {
+            img.userpicture.defaultuserpic {
+                border-width: 1px;
+                border-radius: 50% 50% 50% 6%;
+            }
+        }
+    }
+}
+
 #page-login-index .signuppanel,
 #page-login-index .loginpanel,
 #page-user-profile .page-context-header {
