@@ -24,7 +24,7 @@
  * http://docs.moodle.org/dev/Themes_2.0
  *
  * @package   theme_morecandy
- * @copyright 2015 byLazyDaisy.uk
+ * @copyright 2016 byLazyDaisy.uk
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -200,27 +200,33 @@ function theme_morecandy_get_html_for_settings(renderer_base $output, moodle_pag
     $return->brandicon = html_writer::link($url, $itag, array('class' => $classes, 'title' => $title));
 
     $return->bodyclasses = '';
-    if ((!empty($page->theme->settings->banner)) && (!empty($page->theme->settings->logo)) && (!empty($page->theme->settings->texturizer))) {
+    if ((!empty($page->theme->settings->banner)) && (!empty($page->theme->settings->logo)) &&
+    (!empty($page->theme->settings->texturizer))) {
         $return->bodyclasses = ' has-banner has-logo has-texturizer';
     }
 
-    if ((!empty($page->theme->settings->banner))  && (!empty($page->theme->settings->logo)) && (empty($page->theme->settings->texturizer))) {
+    if ((!empty($page->theme->settings->banner))  && (!empty($page->theme->settings->logo)) &&
+    (empty($page->theme->settings->texturizer))) {
         $return->bodyclasses = ' has-banner has-logo';
     }
 
-    if ((!empty($page->theme->settings->banner)) && (empty($page->theme->settings->logo)) && (!empty($page->theme->settings->texturizer))) {
+    if ((!empty($page->theme->settings->banner)) && (empty($page->theme->settings->logo)) &&
+    (!empty($page->theme->settings->texturizer))) {
         $return->bodyclasses = ' has-banner has-texturizer';
     }
 
-    if ((!empty($page->theme->settings->banner)) && (empty($page->theme->settings->logo)) && (empty($page->theme->settings->texturizer))) {
+    if ((!empty($page->theme->settings->banner)) && (empty($page->theme->settings->logo)) &&
+    (empty($page->theme->settings->texturizer))) {
         $return->bodyclasses = ' has-banner ';
     }
 
-    if ((empty($page->theme->settings->banner)) && (!empty($page->theme->settings->logo)) && (!empty($page->theme->settings->texturizer))) {
+    if ((empty($page->theme->settings->banner)) && (!empty($page->theme->settings->logo)) &&
+    (!empty($page->theme->settings->texturizer))) {
         $return->bodyclasses = ' has-logo has-texturizer ';
     }
 
-    if ((empty($page->theme->settings->banner)) && (!empty($page->theme->settings->logo)) && (empty($page->theme->settings->texturizer))) {
+    if ((empty($page->theme->settings->banner)) && (!empty($page->theme->settings->logo)) &&
+    (empty($page->theme->settings->texturizer))) {
         $return->bodyclasses = ' has-logo ';
     }
 
