@@ -175,9 +175,20 @@ h6 {font-size: 100%;}
         position: fixed;
         right: 25px;
         top: 75px;
+        z-index: 3;
     }
 }
 
+#page-course-view-topics.dir-rtl #page-navbar,
+#page-course-view-weeks.dir-rtl #page-navbar {
+    .breadcrumb-button {
+        position: fixed;
+        left: 25px;
+        right: auto;
+        top: 75px;
+        z-index: 3;
+    }
+}
 .dir-rtl {
     .coursebox {
         > .info {
@@ -187,14 +198,6 @@ h6 {font-size: 100%;}
                     float: right;
                 }
             }
-        }
-    }
-    #page-navbar {
-        .breadcrumb-button {
-            position: fixed;
-            right: auto;
-            left: 25px;
-            top: 75px;
         }
     }
 }
