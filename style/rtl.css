@@ -1,7 +1,7 @@
 .dir-rtl .navbar .brand {
+    float: right;
     margin-left: 0;
     margin-right: -20px;
-    float: right;
 }
 
 .dir-rtl .navbar .nav {
@@ -36,10 +36,10 @@
 #page-login-index.dir-rtl.jsenabled .loginpanel h2,
 #page-user-profile.dir-rtl.jsenabled .page-context-header h2 {
     /* Abs positioning makes it not take up vert space */
-    position: absolute;
-    top: 0;
     left: auto;
+    position: absolute;
     right: 0;
+    top: 0;
     /* Rotate from top right corner (not default) */
     transform-origin: 100% 0;
     transform: rotate(-90deg);
@@ -55,11 +55,11 @@
 .dir-rtl.jsenabled .block.block_adminblock .header h2 {
 
     /* Abs positioning makes it not take up vert space */
-    position: absolute;
-    top: 0;
-    left: auto;
-    right: 0;
     /* Rotate from top right corner (not default) */
+    left: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
     transform-origin: 100% 0;
     transform: rotate(0);
 }
