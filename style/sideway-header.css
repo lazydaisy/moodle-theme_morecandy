@@ -11,12 +11,14 @@
     position: relative;
 }
 .jsenabled .block .header h2 {
-    /* Abs positioning makes it not take up vert space */
     color: #fff;
-    font: bold 12px Sans-Serif;
+    font-family: Sans-Serif;
+    font-size: 12px;
+    font-weight: bold;
     left: 0;
     letter-spacing: 2px;
     line-height: 24px;
+    /* Abs positioning makes it not take up vert space */
     position: absolute;
     text-transform: uppercase;
     top: 0;
@@ -31,7 +33,6 @@
          -o-transform-origin: 0 0;
             transform-origin: 0 0;
 
-
     -webkit-transform: rotate(90deg);
        -moz-transform: rotate(90deg);
         -ms-transform: rotate(90deg);
@@ -39,8 +40,8 @@
             transform: rotate(90deg);
 }
 
-.jsenabled .block.hidden,
-.jsenabled .block.block_adminblock {
+.jsenabled .block.block_adminblock,
+.jsenabled .block.hidden {
     border-left: 0 none;
     display: block;
     min-height: 24px;
@@ -52,8 +53,8 @@
     color: #fff;
 }
 
-.jsenabled .block.hidden .header h2,
-.jsenabled .block.block_adminblock .header h2 {
+.jsenabled .block.block_adminblock .header h2,
+.jsenabled .block.hidden .header h2 {
     /* Border is the new background */
     background: none;
     color: #fff;
@@ -88,31 +89,30 @@
 
 .jsenabled .block_adminblock .content .singleselect {
     display: block;
-    margin-left: 1px;
     margin: 0;
+    margin-left: 1px;
     max-width: 200px;
     padding: 0;
     width: 100%;
 }
+
 /* Block min-height
 -------------------------*/
-
-.jsenabled .block_site_main_menu,
-.jsenabled .block_messages {
+.jsenabled .block_messages,
+.jsenabled .block_site_main_menu {
     min-height: 100px;
 }
 .jsenabled .block_blog_recent {
     min-height: 120px;
 }
-.jsenabled .block_progress,
-.jsenabled .block_lp {
+.jsenabled .block_lp,
+.jsenabled .block_progress {
     min-height: 135px;
 }
 .jsenabled .block_private_files {
     min-height: 150px;
 }
 .jsenabled .block_adminblock,
-.jsenabled .block_mentees,
 .jsenabled .block_badges,
 .jsenabled .block_blog_menu,
 .jsenabled .block_blog_tags,
@@ -128,6 +128,8 @@
 .jsenabled .block_heritage,
 .jsenabled .block_html,
 .jsenabled .block_login,
+.jsenabled .block_lrc,
+.jsenabled .block_mentees,
 .jsenabled .block_myprofile,
 .jsenabled .block_navigation,
 .jsenabled .block_news_items,
@@ -136,8 +138,7 @@
 .jsenabled .block_rss_plus,
 .jsenabled .block_settings,
 .jsenabled .block_tags,
-.jsenabled .block_youtube,
-.jsenabled .block_lrc {
+.jsenabled .block_youtube {
     min-height: 160px;
 }
 
@@ -157,8 +158,8 @@
     min-height: 165px;
 }
 
-.jsenabled .block_selfcompletion,
-.jsenabled .block_completionstatus {
+.jsenabled .block_completionstatus,
+.jsenabled .block_selfcompletion {
     min-height: 175px;
 }
 
