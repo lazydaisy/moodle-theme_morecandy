@@ -6,8 +6,8 @@
 
 .dir-rtl .navbar .nav {
     left: auto;
-    right: 0;
     margin: 0 0 0 10px;
+    right: 0;
 }
 
 .dir-rtl .block .content .userpicture {
@@ -36,10 +36,12 @@
 #page-user-profile.dir-rtl.jsenabled .page-context-header h2,
 #page-user-profile.dir-rtl.jsenabled section.node_category h3 {
     left: auto;
+
     /* Abs positioning makes it not take up vert space */
     position: absolute;
     right: 0;
     top: 0;
+
     /* Rotate from top right corner (not default) */
     transform-origin: 100% 0;
     transform: rotate(-90deg);

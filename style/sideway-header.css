@@ -11,6 +11,8 @@
     position: relative;
 }
 .jsenabled .block .header h2 {
+    /* Border is the new background */
+    background: none;
     color: #fff;
     font-family: Sans-Serif;
     font-size: 12px;
@@ -22,9 +24,6 @@
     position: absolute;
     text-transform: uppercase;
     top: 0;
-
-    /* Border is the new background */
-    background: none;
 
     /* Rotate from top left corner (not default) */
     -webkit-transform-origin: 0 0;
@@ -48,6 +47,7 @@
     padding-left: 0;
     position: relative;
 }
+
 .jsenabled .block.hidden.block_with_controls .block-control-actions.commands.icon .toggle-display > i.fa,
 .jsenabled .block.hidden.block_with_controls .block-control-actions.commands.icon move.menu-action > i.fa {
     color: #fff;
