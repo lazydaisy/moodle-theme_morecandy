@@ -1,4 +1,4 @@
-# .travis.yml for Moodle theme_morecandy:byLazyDaisy
+#.travis.yml for Moodle theme_morecandy:byLazyDaisy
 
 language: php
 
@@ -19,10 +19,10 @@ matrix:
 env:
  global:
   - MOODLE_BRANCH=master
-  # - IGNORE_PATHS=amd/build,amd/src/affix.js,amd/src/bootstrap.js,amd/src/carousel.js,amd/src/fitvids.js,amd/src/jBreadCrumb.js
   # Ignore custom.css until CSSlint can be instructed to ignore lines for '[[setting:customcss]]'.
   # Also ignore generated CSS files.
-  - IGNORE_NAMES=*.txt,custom.css,sideway-header.css,settings.css,font-awesome.css,glyphicon-font.css,
+  - IGNORE_NAMES=*.txt,custom.css,font-awesome.css,glyphicon-font.css,settings.css,sideway-header.css,rtl.css
+
  matrix:
   - DB=pgsql
   - DB=mysqli
