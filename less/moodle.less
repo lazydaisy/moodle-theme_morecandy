@@ -679,7 +679,6 @@ h6 {font-size: 100%;}
         }
     }
 }
-
 .moodle-actionmenu.show[data-enhanced] {
     .menu {
         .iconsmall,
@@ -692,12 +691,28 @@ h6 {font-size: 100%;}
 .invisible {
     background-color: rgba(123, 123, 123, 0.5);
 }
-.usermenu {
-    .moodle-actionmenu[data-enhanced] {
-        .menu {
-            .menu-action.icon:hover img {
-                background-color: @white;
-                border-radius: 50%;
+.jsenabled {
+    .usermenu {
+        .moodle-actionmenu[data-enhanced] {
+            .toggle-display.textmenu {
+                margin-left: 4px;
+                margin-right: -20px;
+            }
+            .menu {
+                .menu-action.icon:hover img {
+                    background-color: @white;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+}
+.jsenabled.dir-rtl {
+    .usermenu {
+        .moodle-actionmenu[data-enhance] {
+            .toggle-display.textmenu {
+                margin-left: -20px;
+                margin-right: 4px;
             }
         }
     }
