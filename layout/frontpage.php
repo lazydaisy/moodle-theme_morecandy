@@ -59,10 +59,9 @@ echo $OUTPUT->doctype() ?>
 <?php require('includes/banner.php'); ?>
 
 <div id="page" class="container-fluid">
-<div id="page-header" class="clearfix">
-    <div class="row-fluid">
-    <?php echo $html->heading; ?>
-    <?php echo $html->welcomenote; ?>
+
+    <div id="page-header" class="clearfix">
+        <?php echo $html->welcomenote; ?>
     </div>
 
     <div id="page-navbar" class="clearfix">
