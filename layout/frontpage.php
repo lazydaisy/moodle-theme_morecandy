@@ -62,7 +62,6 @@ echo $OUTPUT->doctype() ?>
 <div id="page" class="container-fluid">
 
     <div id="page-header" class="clearfix">
-        <div class="row-fluid">
         <?php echo $html->welcomenote; ?>
     </div>
 
