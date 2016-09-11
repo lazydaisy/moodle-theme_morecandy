@@ -100,6 +100,14 @@ if ($ADMIN->fulltree) {
     $setting->set_updatedcallback('theme_reset_all_caches');
     $settings->add($setting);
 
+    // Select mycourses menu.
+    $name = 'theme_morecandy/mycourses';
+    $title = get_string('mycourses', 'theme_morecandy');
+    $description = get_string('mycoursesdesc', 'theme_morecandy');
+    $setting = new admin_setting_configcheckbox($name, $title, $description, 0);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $settings->add($setting);
+
     // Theme overrides custom menu setting...
     $name = 'theme_morecandy/custommenuitems';
     $title = get_string('custommenuitems', 'admin');

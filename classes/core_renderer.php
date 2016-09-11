@@ -36,19 +36,24 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
     protected function render_custom_menu(custom_menu $menu) {
         global $USER, $PAGE;
 
-        $content = parent::render_custom_menu($menu);
-        $mycourses = $this->page->navigation->get('mycourses');
-        if (isloggedin() && $mycourses && $mycourses->has_children()) {
-            $branchlabel = get_string('mycourses', 'theme_morecandy', $USER->firstname);
-            $branchurl   = new moodle_url('/course/index.php');
-            $branchtitle = $branchlabel;
-            $branchsort  = -1;
-            $branch = $menu->add($branchlabel, $branchurl, $branchtitle, $branchsort);
 
-            foreach ($mycourses->children as $coursenode) {
-                $branch->add($coursenode->get_content(),
-                $coursenode->action,
-                $coursenode->get_title());
+
+        if (!empty($PAGE->theme->settings->mycourses)) {
+
+            $content = parent::render_custom_menu($menu);
+            $mycourses = $this->page->navigation->get('mycourses');
+            if (isloggedin() && $mycourses && $mycourses->has_children()) {
+                $branchlabel = get_string('mycourses', 'theme_morecandy', $USER->firstname);
+                $branchurl   = new moodle_url('/course/index.php');
+                $branchtitle = $branchlabel;
+                $branchsort  = -1;
+                $branch = $menu->add($branchlabel, $branchurl, $branchtitle, $branchsort);
+
+                foreach ($mycourses->children as $coursenode) {
+                    $branch->add($coursenode->get_content(),
+                    $coursenode->action,
+                    $coursenode->get_title());
+                }
             }
         }
 
