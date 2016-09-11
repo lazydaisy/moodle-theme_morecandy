@@ -36,8 +36,6 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
     protected function render_custom_menu(custom_menu $menu) {
         global $USER, $PAGE;
 
-
-
         if (!empty($PAGE->theme->settings->mycourses)) {
 
             $content = parent::render_custom_menu($menu);
