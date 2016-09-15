@@ -27,7 +27,7 @@ defined('MOODLE_INTERNAL') || die;
 
 $plugin->component    = 'theme_morecandy';
 $plugin->maturity     = MATURITY_STABLE;           // This version's maturity level.
-$plugin->release      = '3.1.3 (Build: 20160911)'; // Human-friendly version name.
+$plugin->release      = '3.1.4 (Build: 20160911)'; // Human-friendly version name.
 $plugin->requires     = 2016052301;                // This version of Moodle 3.1rc1 (Build: 20160517).
 $plugin->version      = 2016071800;                // Latest build date. YYYYMMDD.
 $plugin->dependencies = array(                     // The version of the parent theme.
