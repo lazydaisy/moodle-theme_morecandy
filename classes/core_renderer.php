@@ -36,7 +36,6 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
     protected function render_custom_menu(custom_menu $menu) {
         global $USER, $PAGE;
 
-
         $content = parent::render_custom_menu($menu);
 
         if (!empty($PAGE->theme->settings->mycourses)) {
@@ -123,7 +122,7 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
         }
         $itag = html_writer::tag('i', '', array('class' => 'course-edit-icon fa '. $icon . ' fa-2x'));
         $content = '';
-        $content .= html_writer::link($url, $itag, array('href' => $url, 'title' => $title));
+        $content .= html_writer::link($url, $itag, array('title' => $title));
 
         return $content;
 
