@@ -37,18 +37,22 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
         global $USER, $PAGE;
 
         $content = parent::render_custom_menu($menu);
-        $mycourses = $this->page->navigation->get('mycourses');
-        if (isloggedin() && $mycourses && $mycourses->has_children()) {
-            $branchlabel = get_string('mycourses', 'theme_morecandy', $USER->firstname);
-            $branchurl   = new moodle_url('/course/index.php');
-            $branchtitle = $branchlabel;
-            $branchsort  = -1;
-            $branch = $menu->add($branchlabel, $branchurl, $branchtitle, $branchsort);
 
-            foreach ($mycourses->children as $coursenode) {
-                $branch->add($coursenode->get_content(),
-                $coursenode->action,
-                $coursenode->get_title());
+        if (!empty($PAGE->theme->settings->mycourses)) {
+
+            $mycourses = $this->page->navigation->get('mycourses');
+            if (isloggedin() && $mycourses && $mycourses->has_children()) {
+                $branchlabel = get_string('mycourses', 'theme_morecandy', $USER->firstname);
+                $branchurl   = new moodle_url('/course/index.php');
+                $branchtitle = $branchlabel;
+                $branchsort  = -1;
+                $branch = $menu->add($branchlabel, $branchurl, $branchtitle, $branchsort);
+
+                foreach ($mycourses->children as $coursenode) {
+                    $branch->add($coursenode->get_content(),
+                    $coursenode->action,
+                    $coursenode->get_title());
+                }
             }
         }
 
@@ -119,7 +123,7 @@ class theme_morecandy_core_renderer extends theme_bootstrapbase_core_renderer {
         }
         $itag = html_writer::tag('i', '', array('class' => 'course-edit-icon fa '. $icon . ' fa-2x'));
         $content = '';
-        $content .= html_writer::link($url, $itag, array('href' => $url, 'title' => $title));
+        $content .= html_writer::link($url, $itag, array('title' => $title));
 
         return $content;
 

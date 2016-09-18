@@ -51,6 +51,8 @@ If the height of your logo is more than 100px add the following CSS rule to the 
 div.logo {height: 125px;} or whatever height in pixels your logo image is.';
 
 $string['mycourses'] = 'My courses';
+$string['mycoursesdesc'] = 'If selected the My courses menu list appears in the navbar at the top of the page';
+
 $string['mygrades'] = 'My Grades';
 
 $string['pluginname'] = 'Morecandy';
