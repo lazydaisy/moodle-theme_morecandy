@@ -99,14 +99,16 @@
 /* Block min-height
 -------------------------*/
 .jsenabled .block_messages,
-.jsenabled .block_site_main_menu {
+.jsenabled .block_site_main_menu,
+.jsenabled .block_tags {
     min-height: 100px;
 }
 .jsenabled .block_blog_recent {
     min-height: 120px;
 }
 .jsenabled .block_lp,
-.jsenabled .block_progress {
+.jsenabled .block_progress,
+.jsenabled .block_globalsearch{
     min-height: 135px;
 }
 .jsenabled .block_private_files {
@@ -137,7 +139,6 @@
 .jsenabled .block_rss_client,
 .jsenabled .block_rss_plus,
 .jsenabled .block_settings,
-.jsenabled .block_tags,
 .jsenabled .block_youtube {
     min-height: 160px;
 }
