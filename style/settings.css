@@ -1,6 +1,9 @@
 /* Custom CSS Settings
 -------------------------*/
 
+@import "../../bootstrapbase/style/moodle.css";
+
+
 [[setting:customcss]]
 
 /* DO NOT ADD ANY CSS HERE
